@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/gameBackground"
     android:background="@android:color/darker_gray"
     tools:context="com.example.android.colorflow.GameActivity">
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/gameBackground"
+        android:elevation="1dp"/>
 
     <TextView
         android:id="@+id/levelTitle"
@@ -29,7 +34,7 @@
         android:layout_margin="30dp"
         android:textColor="#FFFFFF"
         android:textSize="24sp"
-        android:elevation="1dp"
+        android:elevation="2dp"
         android:text="@string/press_color_to_pass"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"/>
 
@@ -54,7 +59,6 @@
 
     <com.example.android.colorflow.ColorFlow
         android:id="@+id/colorflow"
-        android:visibility="gone"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
 

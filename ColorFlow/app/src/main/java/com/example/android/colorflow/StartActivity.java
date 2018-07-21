@@ -41,8 +41,8 @@ public class StartActivity extends Activity {
                 Intent intent = new Intent(StartActivity.this, GameModeSelectActivity.class);
                startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-            },1400);
-            colorFlow.wrongColorClicked(3);
+            },1700);
+            colorFlow.wrongColorClicked();
         });
     }
 

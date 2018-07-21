@@ -14,6 +14,8 @@ public class ColorHandler {
                 Color.CYAN,
                 context.getResources().getColor(R.color.purple),
                 context.getResources().getColor(R.color.turquoise),
+                context.getResources().getColor(R.color.dark_green),
+                context.getResources().getColor(R.color.burgunder),
                 context.getResources().getColor(R.color.yellow)};
     }
 

@@ -50,11 +50,11 @@ public class LevelRandomizer {
     private static int getRandomSpeed(int index){
         Random random = new Random();
         if(index < 5){
-            return 2;
+            return random.nextInt(1)+1;
         }else if(index < 10){
-            return random.nextInt(2)+2;
+            return random.nextInt(2)+1;
         }else{
-            return random.nextInt(3)+3;
+            return random.nextInt(3)+2;
         }
     }
 

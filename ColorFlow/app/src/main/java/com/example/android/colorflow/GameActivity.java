@@ -22,6 +22,7 @@ public class GameActivity extends Activity {
     private TextView scoreView;
     private TextView adjectiveView;
     private TextView totalScoreView;
+    private boolean pressedRestart = false;
     private int index;
 
     @SuppressLint("DefaultLocale")
@@ -81,6 +82,7 @@ public class GameActivity extends Activity {
     private void setListeners() {
         retryButton.setOnClickListener(view -> {
             if(PointsHandler.getInstance().retry(this)) {
+                pressedRestart = true;
                 finish();
                 Intent intent = new Intent(GameActivity.this, GameActivity.class);
                 intent.putExtra("level", index);
@@ -121,6 +123,7 @@ public class GameActivity extends Activity {
         levelTitle      = findViewById(R.id.levelTitle);
         colorTitle      = findViewById(R.id.expectedColorTitle);
         colorFlow       = findViewById(R.id.colorflow);
+        //colorFlow       = getIntent().getStringExtra("gameMode").equals("radial")? new ColorFlowRadial(this,colorFlow.getAttrs()): new ColorFlow(this,colorFlow.getAttrs());
         retryButton     = findViewById(R.id.retryButton);
         successGroup    = findViewById(R.id.successGroup);
         scoreView       = findViewById(R.id.scoreTextView);
@@ -137,18 +140,25 @@ public class GameActivity extends Activity {
 
 
     private void startOver(){
-        finish();
-        overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-        LevelHandler.getInstance().reset();
-        PointsHandler.getInstance().reset();
+        if(!pressedRestart) {
+            finish();
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+            LevelHandler.getInstance().reset();
+            PointsHandler.getInstance().reset();
+        }
     }
 
     private void showExpectedColor(){
-        colorFlow.setVisibility(View.GONE);
-        findViewById(R.id.gameBackground).setBackgroundColor(level.getExpectedColor());
-        new Handler().postDelayed(() -> {
+        View background = findViewById(R.id.gameBackground);
+        background.setBackgroundColor(level.getExpectedColor());
+        Runnable run  = () -> {
+            background.setVisibility(View.GONE);
             colorTitle.setVisibility(View.GONE);
             colorFlow.start();
-        },3000);
+        };
+        background.setOnClickListener(view -> {
+              run.run();
+        });
+        new Handler().postDelayed(run,5000);
     }
 }

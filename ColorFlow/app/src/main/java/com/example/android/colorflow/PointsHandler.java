@@ -46,7 +46,8 @@ public class PointsHandler extends Observable{
     }
 
     public boolean retry(Context context){
-        int cost = 400*attempts++;
+        int cost = 400*attempts;
+        attempts += 1;
         if(totalScore>=cost){
             totalScore -= cost;
             saveTotalScore(context);

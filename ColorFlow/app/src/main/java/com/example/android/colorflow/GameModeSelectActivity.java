@@ -21,6 +21,13 @@ public class GameModeSelectActivity extends Activity {
         findViewById(R.id.radioButton2).setOnClickListener(view -> {
             Intent intent = new Intent(GameModeSelectActivity.this, GameActivity.class);
             intent.putExtra("level",1);
+            intent.putExtra("gameMode","linear");
+            startActivity(intent);
+        });
+        findViewById(R.id.radioButton4).setOnClickListener(view -> {
+            Intent intent = new Intent(GameModeSelectActivity.this, GameActivity.class);
+            intent.putExtra("level",1);
+            intent.putExtra("gameMode","radial");
             startActivity(intent);
         });
         totalScoreText = findViewById(R.id.totalScoreText);

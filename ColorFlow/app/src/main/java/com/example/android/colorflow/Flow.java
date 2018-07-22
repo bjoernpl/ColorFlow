@@ -57,6 +57,7 @@ public abstract class Flow extends View {
 
     void start(){
         isPaused = false;
+        setVisibility(VISIBLE);
         invalidate();
     }
 
@@ -83,11 +84,17 @@ public abstract class Flow extends View {
     }
 
     void correctColorClicked(){
+        setPaused(true);
+    }
 
+    void setFadeAway(int speed){
+        fadeSpeed = speed;
+        fadeAway = true;
     }
 
     void wrongColorClicked(){
         fadeAway = true;
+        setPaused(true);
     }
 
     void fadeToWhite(){
@@ -103,12 +110,18 @@ public abstract class Flow extends View {
         int blue = Color.blue(color);
         if(red<=255-fadeSpeed){
             red += fadeSpeed;
+        }else{
+            red = 255;
         }
         if(green<=255-fadeSpeed){
             green += fadeSpeed;
+        }else{
+            green = 255;
         }
         if(blue<=255-fadeSpeed){
             blue += fadeSpeed;
+        }else{
+            blue = 255;
         }
         return Color.rgb(red, green, blue);
     }

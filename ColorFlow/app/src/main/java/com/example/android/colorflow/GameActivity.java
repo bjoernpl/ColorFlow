@@ -14,7 +14,7 @@ import android.widget.Toast;
 public class GameActivity extends Activity {
 
     private Level level;
-    private ColorFlow colorFlow;
+    private Flow colorFlow;
     private TextView colorTitle;
     private TextView retryButton;
     private TextView levelTitle;
@@ -29,7 +29,11 @@ public class GameActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_game);
+        if(getIntent().getStringExtra("gameMode").equals("radial")){
+            setContentView(R.layout.activity_game_radial);
+        }else{
+            setContentView(R.layout.activity_game);
+        }
         setFullscreen();
         initialiseViews();
         setListeners();
@@ -75,6 +79,7 @@ public class GameActivity extends Activity {
         LevelHandler.getInstance().incrementLevel();
         Intent intent = new Intent(GameActivity.this, GameActivity.class);
         intent.putExtra("level", index + 1);
+        intent.putExtra("gameMode",getIntent().getStringExtra("gameMode"));
         startActivity(intent);
     }
 

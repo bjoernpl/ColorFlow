@@ -10,7 +10,10 @@ import android.graphics.RadialGradient;
 import android.graphics.Shader;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+
+import java.util.Random;
 
 
 public class ColorFlowRadial extends Flow {
@@ -18,7 +21,12 @@ public class ColorFlowRadial extends Flow {
 
     private RadialGradient colorGradient;
     private Paint paint;
-    private int radius;
+    private int radius = 1000;
+    private float x;
+    private float y;
+    private boolean init = false;
+    double x_direction;
+    double y_direction;
 
     public ColorFlowRadial(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -26,8 +34,15 @@ public class ColorFlowRadial extends Flow {
 
     public void setLevel(Level level) {
         super.setLevel(level);
-        radius = 3500;
-        colorGradient = new RadialGradient(this.getWidth() / 2, this.getHeight() / 2, radius, colors, null, TILEMODE);
+
+        int speed = 12 * this.speed;
+
+        x_direction = new Random().nextFloat()-0.5f;
+        x_direction*=speed;
+
+        y_direction = new Random().nextFloat()-0.5f;
+        y_direction*=speed;
+        colorGradient = new RadialGradient(x, y, radius, colors, null, TILEMODE);
         paint = new Paint();
         paint.setShader(colorGradient);
     }
@@ -37,35 +52,54 @@ public class ColorFlowRadial extends Flow {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (!isPaused) {
-            frame += speed;
+        if(!init){
+            init = true;
+            radius = this.getWidth()/2;
+            x = this.getWidth() / 2f;
+            y = this.getHeight() / 2f;
         }
-        frame %= FRAMERATE;
-        int factor = leftToRight ? 1 : -1;
-
-            /*if(frame<FRAMERATE/4){
-                x0 += speed*50;
-            }else if(frame<3*FRAMERATE/4){
-                x0 -= speed*50;
+        if (!isPaused) {
+            frame += 1;
+            if(frame <= FRAMERATE/2){
+                radius *= 1.02f;
             }else{
-                x0 += speed*50;
+                radius *= (1/1.02f);
+            }
+            frame %= FRAMERATE;
+
+            int factor = leftToRight ? 1 : -1;
+
+            x += x_direction;
+            y += y_direction;
+            if(x<0){
+                x=0;
+                x_direction *= -1;
+            }
+            if(y<0){
+                y=0;
+                y_direction *= -1;
+            }
+            if(x>getWidth()){
+                x = getWidth();
+                x_direction *= -1;
+            }
+            if(y>getHeight()){
+                y=getHeight();
+                y_direction *= -1;
             }
 
+            colorGradient = new RadialGradient(x, y, radius, colors, null, TILEMODE);
+            paint.setShader(colorGradient);
+            canvas.drawPaint(paint);
+            invalidate();
+        }else{
+            colorGradient = new RadialGradient(x, y, radius, colors, null, TILEMODE);
+            paint.setShader(colorGradient);
+            canvas.drawPaint(paint);
+        }
 
-            int y;
-            /*if(frame<FRAMERATE/2){
-                y = (int) (factor * frame * this.getHeight() * angle / (FRAMERATE/2));
-            }else{
-                y = (int) (factor * this.getHeight() * angle) - (int)(factor * (frame-FRAMERATE/2) * this.getHeight() * angle/ (FRAMERATE/2));
-            }
-            y = (int)(factor *angle*frame *this.getHeight()/(FRAMERATE/(WIDTH*2)));
-
-            colorGradient = new RadialGradient(x0,x0*angle,radius,colors,null,TILEMODE);*/
-        int addition = frame > FRAMERATE / 2 ? -1 * (FRAMERATE - frame) : frame;
-        colorGradient = new RadialGradient(this.getWidth() / 2, this.getHeight() / 2, radius += addition, colors, null, TILEMODE);
-        paint.setShader(colorGradient);
-        canvas.drawPaint(paint);
-        invalidate();
 
     }
+
+
 }

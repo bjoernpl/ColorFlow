@@ -105,7 +105,7 @@ public class ColorFlow extends Flow {
                         }
                     }else{
                         if(positions[i] != 1){
-                            positions[i] += (1-positions[i])/120;
+                            positions[i] += (1-positions[i])/120f;
                         }
                     }
                 }

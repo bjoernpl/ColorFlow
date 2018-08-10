@@ -1,8 +1,9 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Statistics;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
+
+import com.example.android.colorflow.Levels.LevelHandler;
 
 import java.util.Observable;
 

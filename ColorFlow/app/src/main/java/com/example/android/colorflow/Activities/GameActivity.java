@@ -1,4 +1,4 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Activities;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -10,6 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.android.colorflow.GameModes.Flow;
+import com.example.android.colorflow.Levels.Level;
+import com.example.android.colorflow.Levels.LevelHandler;
+import com.example.android.colorflow.Statistics.PointsHandler;
+import com.example.android.colorflow.R;
+import com.example.android.colorflow.Resources.AdjectiveGiver;
 
 public class GameActivity extends Activity {
 
@@ -53,7 +60,7 @@ public class GameActivity extends Activity {
         showFailBorder();
         successGroup.setVisibility(View.VISIBLE);
         scoreView.setText(String.format("%d",accuracy));
-        totalScoreView.setText(String.format("Total score: %d",PointsHandler.getInstance().getScore()));
+        totalScoreView.setText(String.format("Total score: %d", PointsHandler.getInstance().getScore()));
         colorTitle.setVisibility(View.GONE);
         adjectiveView.setText("You failed!");
         retryButton.setVisibility(View.VISIBLE);

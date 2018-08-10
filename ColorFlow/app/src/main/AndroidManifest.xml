@@ -9,17 +9,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".LevelChooser"></activity>
-        <activity android:name=".GameActivity" />
-        <activity android:name=".StartActivity">
+        <activity android:name=".Levels.LevelChooser"></activity>
+        <activity android:name=".Activities.GameActivity" />
+        <activity android:name=".Activities.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GameModeSelectActivity"></activity>
+        <activity android:name=".Activities.GameModeSelectActivity"></activity>
     </application>
 
 </manifest>

@@ -1,8 +1,10 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Resources;
 
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Color;
+
+import com.example.android.colorflow.R;
 
 public class ColorHandler {
 

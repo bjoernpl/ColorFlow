@@ -1,19 +1,14 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.GameModes;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Shader;
-import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.View;
+
+import com.example.android.colorflow.Levels.Level;
 
 import java.util.ArrayList;
 
@@ -43,7 +38,7 @@ public class ColorFlow extends Flow {
         paint.setShader(colorGradient);
     }
 
-    void start(){
+    public void start(){
         super.start();
         this.setVisibility(VISIBLE);
         invalidate();

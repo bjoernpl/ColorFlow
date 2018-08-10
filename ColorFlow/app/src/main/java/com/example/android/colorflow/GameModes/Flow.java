@@ -1,15 +1,16 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.GameModes;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.support.annotation.ColorInt;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
+import com.example.android.colorflow.Levels.Level;
 
 public abstract class Flow extends View {
 
@@ -33,7 +34,7 @@ public abstract class Flow extends View {
 
     boolean fadeAway = false;
     boolean leftToRight;
-    boolean isPaused = true;
+    public boolean isPaused = true;
 
     public Flow(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -45,7 +46,7 @@ public abstract class Flow extends View {
         return attrs;
     }
 
-    void setLevel(Level  level){
+    public void setLevel(Level level){
         this.fadeAway = false;
         this.speed = level.getSpeed();
         this.colors = level.getColors().clone();
@@ -55,7 +56,7 @@ public abstract class Flow extends View {
         WIDTH = colors.length;
     }
 
-    void start(){
+    public void start(){
         isPaused = false;
         setVisibility(VISIBLE);
         invalidate();
@@ -66,7 +67,7 @@ public abstract class Flow extends View {
         return super.performClick();
     }
 
-    int getColor(int x,  int y){
+    public int getColor(int x,  int y){
         Bitmap b = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         Canvas c = new Canvas(b);
         layout(0, 0, getWidth(), getHeight());
@@ -74,7 +75,7 @@ public abstract class Flow extends View {
         return b.getPixel(x,y);
     }
 
-    int getAccuracy(int x,  int y){
+    public int getAccuracy(int x,  int y){
         setPaused(true);
         int color = getColor(x,y);
         float rAccuracy = 100-Math.abs(getR(expectedColor)-getR(color))*(100f/255f);
@@ -83,21 +84,21 @@ public abstract class Flow extends View {
         return (int)(rAccuracy+gAccuracy+bAccuracy)/3;
     }
 
-    void correctColorClicked(){
+    public void correctColorClicked(){
         setPaused(true);
     }
 
-    void setFadeAway(int speed){
+    public void setFadeAway(int speed){
         fadeSpeed = speed;
         fadeAway = true;
     }
 
-    void wrongColorClicked(){
+    public void wrongColorClicked(){
         fadeAway = true;
         setPaused(true);
     }
 
-    void fadeToWhite(){
+    public void fadeToWhite(){
         for(int i = 0; i<colors.length;i++){
             colors[i] = adjustColors(colors[i]);
         }
@@ -126,7 +127,7 @@ public abstract class Flow extends View {
         return Color.rgb(red, green, blue);
     }
 
-    void setPaused(boolean paused){
+    public void setPaused(boolean paused){
         isPaused = paused;
         if(!isPaused){
             invalidate();

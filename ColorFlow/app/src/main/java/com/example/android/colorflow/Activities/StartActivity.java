@@ -1,15 +1,18 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
-import java.util.Observable;
-import java.util.Observer;
+import com.example.android.colorflow.GameModes.ColorFlow;
+import com.example.android.colorflow.Levels.LevelRandomizer;
+import com.example.android.colorflow.R;
+import com.example.android.colorflow.Resources.ColorHandler;
+import com.example.android.colorflow.Statistics.Highscore;
+import com.example.android.colorflow.Statistics.PointsHandler;
+import com.example.android.colorflow.Statistics.Statistics;
 
 public class StartActivity extends Activity {
 

@@ -1,4 +1,4 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Statistics;
 
 import android.support.annotation.ColorInt;
 

@@ -1,10 +1,11 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Levels;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import com.example.android.colorflow.Resources.ColorHandler;
 
 import java.util.ArrayList;
 import java.util.Observable;

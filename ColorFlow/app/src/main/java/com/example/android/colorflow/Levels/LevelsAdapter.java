@@ -1,4 +1,4 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Levels;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Observable;
+import com.example.android.colorflow.R;
 
 /**
  * Created by bjoer on 6/24/2018.

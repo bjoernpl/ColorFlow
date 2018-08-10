@@ -1,7 +1,6 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Levels;
 
-import android.content.res.Resources;
-import android.graphics.Color;
+import com.example.android.colorflow.Levels.Level;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -36,7 +35,7 @@ public class LevelRandomizer {
         }
         int[] colorArray = getRandomColors(colors);
         return new Level(index,
-                75+index/3,
+                80,
                 colorArray,getExpectedColor(colorArray),
                 getRandomSpeed(index),
                 new Random().nextFloat()*2,

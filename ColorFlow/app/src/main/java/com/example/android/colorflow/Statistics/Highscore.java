@@ -1,4 +1,4 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Statistics;
 
 /**
  * Created by bjoer on 6/25/2018.

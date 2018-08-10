@@ -1,11 +1,14 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Activities;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.example.android.colorflow.Statistics.Highscore;
+import com.example.android.colorflow.Statistics.PointsHandler;
+import com.example.android.colorflow.R;
 
 public class GameModeSelectActivity extends Activity {
 

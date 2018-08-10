@@ -1,4 +1,4 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Resources;
 
 public class AdjectiveGiver {
 

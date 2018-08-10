@@ -1,12 +1,14 @@
-package com.example.android.colorflow;
+package com.example.android.colorflow.Levels;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+
+import com.example.android.colorflow.Activities.GameActivity;
+import com.example.android.colorflow.R;
 
 public class LevelChooser extends Activity {
 

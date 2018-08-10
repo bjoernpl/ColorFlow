@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
-    tools:context="com.example.android.colorflow.GameActivity">
+    tools:context="com.example.android.colorflow.Activities.GameActivity">
 
     <View
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
         android:textStyle="bold"
         android:visibility="gone" />
 
-    <com.example.android.colorflow.ColorFlow
+    <com.example.android.colorflow.GameModes.ColorFlow
         android:id="@+id/colorflow"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

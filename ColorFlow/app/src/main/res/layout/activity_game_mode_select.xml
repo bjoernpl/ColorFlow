@@ -4,44 +4,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.GameModeSelectActivity">
+    tools:context=".Activities.GameModeSelectActivity"
+    android:id="@+id/gameChooserBackground">
+
+    <com.example.android.colorflow.GameModes.ColorFlowRadial
+        android:id="@+id/colorFlowRadial"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <com.example.android.colorflow.GameModes.ColorFlow
+        android:id="@+id/colorFlow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/title_game_mode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_below="@+id/textView5"
-        android:layout_marginEnd="103dp"
-        android:text="modes"
-        android:textAllCaps="true"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="40sp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="86dp"
-        android:layout_marginTop="116dp"
-        android:text="game"
-        android:textAllCaps="true"
-        android:textColor="@android:color/holo_blue_bright"
-        android:textSize="40sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Flow\nMode"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@android:color/white"
+        android:textSize="38sp"
         android:textStyle="bold" />
 
     <RadioGroup
+        android:id="@+id/radioGroupGameChooser"
         android:layout_width="245dp"
-        android:layout_height="268dp"
+        android:layout_height="211dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="113dp">
+        android:layout_marginBottom="170dp">
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -54,7 +55,7 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/radioButton4"
+            android:id="@+id/radioButton2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -67,30 +68,18 @@
             android:textStyle="bold" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButton3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:buttonTint="@android:color/holo_green_light"
-            android:text="Mixed"
+            android:text="Random"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_green_light"
             android:textSize="24sp"
             android:textStyle="bold" />
 
-        <RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:buttonTint="@android:color/holo_red_dark"
-            android:text="Random"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="@android:color/holo_red_dark"
-            android:textSize="24sp"
-            android:textStyle="bold" />
     </RadioGroup>
 
     <TextView
@@ -122,4 +111,18 @@
         android:textColor="@android:color/holo_red_light"
         android:textSize="24sp"
         android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginRight="10dp"
+        android:text="Start Game!"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
 </RelativeLayout>

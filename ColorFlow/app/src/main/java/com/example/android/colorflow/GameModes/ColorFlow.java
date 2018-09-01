@@ -42,7 +42,6 @@ public class ColorFlow extends Flow {
         super.start();
         this.setVisibility(VISIBLE);
         invalidate();
-
     }
 
 

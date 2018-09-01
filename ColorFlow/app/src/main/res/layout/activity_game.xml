@@ -26,17 +26,18 @@
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"/>
 
     <TextView
-        android:id="@+id/expectedColorTitle"
-        android:layout_width="match_parent"
+        android:id="@+id/totalScoreText"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:layout_below="@id/levelTitle"
-        android:layout_margin="30dp"
-        android:textColor="#FFFFFF"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:drawableLeft="@drawable/ic_color_lens_white_24dp"
+        android:padding="5dp"
+        android:text="4200"
+        android:visibility="gone"
         android:textSize="24sp"
-        android:elevation="2dp"
-        android:text="@string/press_color_to_pass"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/retryButton"

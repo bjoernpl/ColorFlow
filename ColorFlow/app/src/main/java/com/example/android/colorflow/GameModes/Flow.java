@@ -14,7 +14,7 @@ import com.example.android.colorflow.Levels.Level;
 
 public abstract class Flow extends View {
 
-    static final int FRAMERATE = 240;
+    static final int FRAMERATE = 480;
     static final Shader.TileMode TILEMODE = Shader.TileMode.MIRROR;
     static int fadeSpeed = 1;
 

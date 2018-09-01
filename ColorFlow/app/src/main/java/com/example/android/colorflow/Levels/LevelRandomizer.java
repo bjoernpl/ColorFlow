@@ -51,9 +51,11 @@ public class LevelRandomizer {
         if(index < 5){
             return random.nextInt(1)+1;
         }else if(index < 10){
-            return random.nextInt(2)+1;
+            return random.nextInt(2)+2;
+        }else if(index < 15){
+            return random.nextInt(3)+3;
         }else{
-            return random.nextInt(3)+2;
+            return random.nextInt(5)+4;
         }
     }
 

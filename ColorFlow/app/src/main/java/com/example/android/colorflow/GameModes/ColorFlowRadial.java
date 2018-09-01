@@ -58,9 +58,9 @@ public class ColorFlowRadial extends Flow {
         if (!isPaused) {
             frame += 1;
             if(frame <= FRAMERATE/2){
-                radius *= 1.02f;
+                radius *= 1.01f;
             }else{
-                radius *= (1/1.02f);
+                radius *= (1/1.01f);
             }
             frame %= FRAMERATE;
 

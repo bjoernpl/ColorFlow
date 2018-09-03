@@ -61,4 +61,15 @@
         android:progressBackgroundTint="@android:color/transparent"
         android:progressTint="@android:color/white" />
 
+    <TextView
+        android:id="@+id/remaining_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Remaining time:\n10 seconds"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        android:visibility="gone" />
+
 </RelativeLayout>

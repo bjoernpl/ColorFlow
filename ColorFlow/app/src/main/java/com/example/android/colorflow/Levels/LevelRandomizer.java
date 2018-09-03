@@ -13,6 +13,7 @@ public class LevelRandomizer {
 
 
     private static ArrayList<Integer> colorlist;
+    private static int difficulty = 0;
 
     public static Level getStartLevel(int[] colors){
         colorlist = new ArrayList<>();
@@ -26,6 +27,11 @@ public class LevelRandomizer {
                 1,
                 new Random().nextFloat()*2,
                 new Random().nextBoolean());
+    }
+
+    public static Level getRandomLevel(int index, int[] colors, int difficultysetter){
+        difficulty = difficultysetter;
+        return getRandomLevel(index,colors);
     }
 
     public static Level getRandomLevel(int index, int[] colors){
@@ -47,6 +53,13 @@ public class LevelRandomizer {
     }
 
     private static int getRandomSpeed(int index){
+        if(difficulty!=0){
+            switch (difficulty){
+                case 1: return 2;
+                case 2: return 4;
+                case 3: return 7;
+            }
+        }
         Random random = new Random();
         if(index < 5){
             return random.nextInt(1)+1;

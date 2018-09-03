@@ -21,9 +21,15 @@ public class LevelHandler extends Observable{
     private ArrayList<Level> levels;
     private int currentLevel = 1;
     private static int[] colors = null;
+    static int difficulty = 0;
 
     private LevelHandler(){
 
+    }
+
+    public void setColors(Context context,int difficulty){
+        this.difficulty = difficulty;
+        setColors(context);
     }
 
     public void setColors(Context context){
@@ -95,6 +101,7 @@ public class LevelHandler extends Observable{
     static class RandomLevelTask extends AsyncTask<Integer,Void,Level> {
         @Override
         protected Level doInBackground(Integer... integers) {
+            if(difficulty!=0)return LevelRandomizer.getRandomLevel(integers[0],colors,difficulty);
             return LevelRandomizer.getRandomLevel(integers[0],colors);
         }
     }

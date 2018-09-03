@@ -13,6 +13,12 @@ import android.widget.TextView;
 
 import com.example.android.colorflow.R;
 import com.example.android.colorflow.Resources.ClickListener;
+import com.example.android.colorflow.TimeHandling.Timer;
+
+import org.w3c.dom.Text;
+
+import java.util.Observable;
+import java.util.Observer;
 
 public class ShowExpectedColorActivity extends Activity {
 
@@ -20,6 +26,15 @@ public class ShowExpectedColorActivity extends Activity {
     TextView gameModeTitle;
     View background;
     ProgressBar pbar;
+    TextView remainingTime;
+
+    int time;
+    private Observer observer = new Observer() {
+        @Override
+        public void update(Observable observable, Object o) {
+            remainingTime.setText(String.format("Remaining time: %d seconds", o));
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +45,19 @@ public class ShowExpectedColorActivity extends Activity {
         gameModeTitle = findViewById(R.id.title_game_mode);
         pbar = findViewById(R.id.progressbar);
         String gameMode = getIntent().getStringExtra("gameMode");
+        if(gameMode.equals("speed")){
+            time = getIntent().getIntExtra("timeMode",10);
+            TextView tv = findViewById(R.id.requiredAccuracy);
+            tv.setText("Score as many points as possible in 10 seconds!\n\nTap anywhere to start timer!");
+            remainingTime = findViewById(R.id.remaining_time);
+            remainingTime.setVisibility(View.VISIBLE);
+            Timer timer = Timer.getInstance();
+            if(!timer.isRunning()) {
+                remainingTime.setText(String.format("Remaining time: %s seconds", time));
+            }else{
+                timer.addObserver(observer);
+            }
+        }
         gameMode = gameMode.substring(0,1).toUpperCase() + gameMode.substring(1).toLowerCase();
         gameModeTitle.setText(String.format("%s\nMode",gameMode));
         background = findViewById(R.id.expectedColorBackground);
@@ -49,6 +77,12 @@ public class ShowExpectedColorActivity extends Activity {
 
 
     private void startLevel() {
+        Timer timer = Timer.getInstance();
+        if(!timer.isRunning()){
+            timer.setTime(time);
+            timer.startTimer();
+            timer.deleteObserver(observer);
+        }
         setResult(RESULT_OK);
         finish();
     }

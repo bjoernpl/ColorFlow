@@ -77,7 +77,7 @@ public class FlowModeSelectActivity extends Activity{
                     colorFlowRadial.setLevel(LevelRandomizer.getStartLevel(ColorHandler.getColors(this)));
                     colorFlowRadial.start();
                     break;
-                case 2:
+                case R.id.radioButton3:
                     if(new Random().nextBoolean()){
                         colorFlow.setVisibility(View.VISIBLE);
                         colorFlowRadial.setVisibility(View.GONE);
@@ -113,6 +113,7 @@ public class FlowModeSelectActivity extends Activity{
             intent.putExtra("flowMode","random");
         }
         intent.putExtra("gameMode",getIntent().getStringExtra("gameMode"));
+        if(getIntent().hasExtra("timeMode"))intent.putExtra("timeMode",getIntent().getIntExtra("timeMode",10));
         startActivity(intent);
     }
 

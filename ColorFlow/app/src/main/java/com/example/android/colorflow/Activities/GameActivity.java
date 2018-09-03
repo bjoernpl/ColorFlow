@@ -14,11 +14,15 @@ import android.widget.Toast;
 import com.example.android.colorflow.GameModes.Flow;
 import com.example.android.colorflow.Levels.Level;
 import com.example.android.colorflow.Levels.LevelHandler;
+import com.example.android.colorflow.Levels.LevelRandomizer;
 import com.example.android.colorflow.Statistics.Highscore;
 import com.example.android.colorflow.Statistics.PointsHandler;
 import com.example.android.colorflow.R;
 import com.example.android.colorflow.Resources.AdjectiveGiver;
+import com.example.android.colorflow.TimeHandling.Timer;
 
+import java.util.Observable;
+import java.util.Observer;
 import java.util.Random;
 
 public class GameActivity extends Activity {
@@ -37,25 +41,35 @@ public class GameActivity extends Activity {
     private int index;
     private boolean finished = false;
     private boolean succeeded = false;
+    private String gameMode;
 
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String gameMode = getIntent().getStringExtra("flowMode");
-        if(gameMode.equals("random")){
-            gameMode = new Random().nextBoolean()?"linear":"radial";
+        String flowMode = getIntent().getStringExtra("flowMode");
+        if(flowMode.equals("random")){
+            flowMode = new Random().nextBoolean()?"linear":"radial";
         }
-        if(gameMode.equals("radial")){
+        if(flowMode.equals("radial")){
             setContentView(R.layout.activity_game_radial);
-        }else if(gameMode.equals("linear")){
+        }else if(flowMode.equals("linear")){
             setContentView(R.layout.activity_game);
+        }
+        gameMode = getIntent().getStringExtra("gameMode");
+        if(gameMode!=null&&gameMode.equals("speed")){
+            startTimer();
         }
         setFullscreen();
         initialiseViews();
         setListeners();
 
-        LevelHandler.getInstance().setColors(this);
+        if(getIntent().hasExtra("difficulty")){
+            int difficulty = getIntent().getIntExtra("difficulty",0);
+            LevelHandler.getInstance().setColors(this,difficulty);
+        }else {
+            LevelHandler.getInstance().setColors(this);
+        }
         index = getIntent().getIntExtra("level",0);
         level = LevelHandler.getInstance().getLevel(index);
         levelTitle.setText(String.format("Level %d",index));
@@ -64,23 +78,59 @@ public class GameActivity extends Activity {
         showExpectedColor();
     }
 
+    private void startTimer() {
+        Timer timer = Timer.getInstance();
+        if(timer.isRunning()) timer.addObserver((observable, o) -> {
+            if (((int) o) == 0) {
+                showSpeedModeTimeOver();
+            }
+        });
+    }
+
+    private void showSpeedModeTimeOver() {
+        finished = true;
+        finish();
+        Intent intent = new Intent(this,SpeedModeTimeOver.class);
+        intent.putExtra("timeMode",getIntent().getIntExtra("timeMode",10));
+        intent.putExtra("totalScore",PointsHandler.getInstance().getScore());
+        intent.putExtra("gameMode",gameMode);
+        intent.putExtra("flowMode",getIntent().getStringExtra("flowMode"));
+        startActivity(intent);
+        PointsHandler.getInstance().reset();
+        LevelHandler.getInstance().reset();
+    }
+
     @SuppressLint("DefaultLocale")
     private void failure(int accuracy){
-        colorFlow.wrongColorClicked();
         showFailBorder();
-        new Handler().postDelayed(this::startOver,4600);
-        adjectiveView.setText("You failed!");
-        retryButton.setVisibility(View.VISIBLE);
-        retryButton.setText(String.format("Retry for %d",PointsHandler.getInstance().getRetryCost()));
-        successGroup.setVisibility(View.VISIBLE);
-        scoreView.setText(String.format("%d",accuracy));
-        sessionScoreView.setText(String.format("Total score: %d", PointsHandler.getInstance().getScore()));
+        if(gameMode.equals("speed")){
+            colorFlow.setPaused(true);
+            adjectiveView.setText("Not close enough!");
+            successGroup.setVisibility(View.VISIBLE);
+            accuracy=-100;
+            scoreView.setText(String.format("%d", accuracy));
+            //if(PointsHandler.getInstance().getScore()>=100) {
+                PointsHandler.getInstance().addScore(accuracy, GameActivity.this);
+                sessionScoreView.setText(String.format("Total score: %d", PointsHandler.getInstance().getScore()));
+            //}
+
+        }else {
+            colorFlow.wrongColorClicked();
+            new Handler().postDelayed(this::startOver, 4600);
+            adjectiveView.setText("You failed!");
+            retryButton.setVisibility(View.VISIBLE);
+            retryButton.setText(String.format("Retry for %d", PointsHandler.getInstance().getRetryCost()));
+            successGroup.setVisibility(View.VISIBLE);
+            scoreView.setText(String.format("%d", accuracy));
+            sessionScoreView.setText(String.format("Total score: %d", PointsHandler.getInstance().getScore()));
+        }
 
     }
 
 
     @SuppressLint("DefaultLocale")
     private void success(int accuracy){
+        PointsHandler.getInstance().addScore(accuracy,GameActivity.this);
         colorFlow.correctColorClicked();
         successGroup.setVisibility(View.VISIBLE);
         scoreView.setText(String.format("%d",accuracy));
@@ -100,6 +150,7 @@ public class GameActivity extends Activity {
             intent.putExtra("level", index + 1);
             intent.putExtra("flowMode", getIntent().getStringExtra("flowMode"));
             intent.putExtra("gameMode",getIntent().getStringExtra("gameMode"));
+            if(getIntent().hasExtra("timeMode"))intent.putExtra("timeMode",getIntent().getIntExtra("timeMode",10));
             startActivity(intent);
         }
     }
@@ -130,7 +181,6 @@ public class GameActivity extends Activity {
                 //colorFlow.performClick();
                 if(!colorFlow.isPaused&&!succeeded) {
                     int accuracy = colorFlow.getAccuracy((int) motionEvent.getX(), (int) motionEvent.getY());
-                    PointsHandler.getInstance().addScore(accuracy,GameActivity.this);
                     totalScoreView.setVisibility(View.VISIBLE);
                     if (accuracy >= level.getRequiredAccuracy()) {
                         succeeded = true;
@@ -142,6 +192,8 @@ public class GameActivity extends Activity {
                     //colorTitle.setVisibility(View.VISIBLE);
                     colorFlow.setPaused(true);
                 }else if(succeeded){
+                    startNextLevel();
+                }else if(gameMode!=null&&gameMode.equals("speed")){
                     startNextLevel();
                 }
                 return true;
@@ -189,6 +241,7 @@ public class GameActivity extends Activity {
         Intent intent = new Intent(this, ShowExpectedColorActivity.class);
         intent.putExtra("expectedColor", level.getExpectedColor());
         intent.putExtra("gameMode", getIntent().getStringExtra("gameMode"));
+        if(getIntent().hasExtra("timeMode"))intent.putExtra("timeMode",getIntent().getIntExtra("timeMode",10));
         startActivityForResult(intent,2);
 
     }

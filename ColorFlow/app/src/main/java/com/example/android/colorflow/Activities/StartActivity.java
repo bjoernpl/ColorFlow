@@ -1,12 +1,15 @@
 package com.example.android.colorflow.Activities;
 
+import android.animation.LayoutTransition;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.colorflow.GameModes.ColorFlow;
 import com.example.android.colorflow.Levels.LevelRandomizer;
@@ -14,6 +17,8 @@ import com.example.android.colorflow.R;
 import com.example.android.colorflow.Resources.ColorHandler;
 import com.example.android.colorflow.Statistics.Highscore;
 import com.example.android.colorflow.Statistics.PointsHandler;
+
+import java.util.Random;
 
 public class StartActivity extends Activity {
 
@@ -23,6 +28,7 @@ public class StartActivity extends Activity {
     ColorFlow colorFlow;
     View startView;
     View gameModeView;
+    RadioGroup difficultyChoice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,8 +83,16 @@ public class StartActivity extends Activity {
                 intent.putExtra("gameMode","casual");
                 break;
             case R.id.rl_speed_mode:
-                intent.putExtra("gameMode","speed");
-                break;
+                //intent.putExtra("gameMode","speed");
+                /*LayoutTransition transition = new LayoutTransition();
+                transition.addChild(background,gameModeView.findViewById(R.id.speed_mode_icon));
+                View timeChoice = getLayoutInflater().inflate(R.layout.speed_mode_layout,null);
+                transition.addChild(background,);*/
+                background.removeView(gameModeView);
+                View timeChoice = getLayoutInflater().inflate(R.layout.speed_mode_layout,null);
+                background.addView(timeChoice);
+                difficultyChoice = timeChoice.findViewById(R.id.radioGroupDifficultyChooser);
+                return;
             case R.id.rl_continuous_mode:
                 intent.putExtra("gameMode","continuous");
                 break;
@@ -116,4 +130,34 @@ public class StartActivity extends Activity {
         decorView.setSystemUiVisibility(uiOptions);
     }
 
+    public void timeClicked(View view) {
+        if(difficultyChoice.getCheckedRadioButtonId()==0){
+            Toast.makeText(this,"Please choose a difficulty first",Toast.LENGTH_SHORT);
+            return;
+        }
+        Intent intent = new Intent(StartActivity.this,FlowModeSelectActivity.class);
+        switch (view.getId()){
+            case R.id.time_choice_10_seconds:
+                intent.putExtra("timeMode",10);
+                break;
+            case R.id.time_choice_30_seconds:
+                intent.putExtra("timeMode",30);
+                break;
+            case R.id.time_choice_60_seconds:
+                intent.putExtra("timeMode",60);
+                break;
+        }
+        intent.putExtra("gameMode","speed");
+        switch (difficultyChoice.getCheckedRadioButtonId()){
+            case R.id.radioButton:
+
+                break;
+            case R.id.radioButton2:
+
+            case R.id.radioButton3:
+
+                break;
+        }
+        startActivity(intent);
+    }
 }

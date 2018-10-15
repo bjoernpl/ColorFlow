@@ -1,4 +1,4 @@
-package com.example.android.colorflow.Activities;
+package com.example.android.colorflow.Activities.Ingame;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,9 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.android.colorflow.Activities.Ingame.GameActivity;
 import com.example.android.colorflow.R;
-
-import org.w3c.dom.Text;
 
 public class SpeedModeTimeOver extends Activity {
 

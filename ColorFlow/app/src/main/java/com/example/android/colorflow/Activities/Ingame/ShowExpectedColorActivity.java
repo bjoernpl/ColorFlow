@@ -1,4 +1,4 @@
-package com.example.android.colorflow.Activities;
+package com.example.android.colorflow.Activities.Ingame;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
@@ -11,6 +11,7 @@ import android.view.animation.LinearInterpolator;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.android.colorflow.GameModes.Game;
 import com.example.android.colorflow.R;
 import com.example.android.colorflow.Resources.ClickListener;
 import com.example.android.colorflow.TimeHandling.Timer;
@@ -44,8 +45,8 @@ public class ShowExpectedColorActivity extends Activity {
         colorTitle      = findViewById(R.id.expectedColorTitle);
         gameModeTitle = findViewById(R.id.title_game_mode);
         pbar = findViewById(R.id.progressbar);
-        String gameMode = getIntent().getStringExtra("gameMode");
-        if(gameMode.equals("speed")){
+        Game game = getIntent().getParcelableExtra("game");
+        if(game.getGameMode().equals(Game.GameMode.Speed)){
             time = getIntent().getIntExtra("timeMode",10);
             TextView tv = findViewById(R.id.requiredAccuracy);
             tv.setText("Score as many points as possible in 10 seconds!\n\nTap anywhere to start timer!");
@@ -58,8 +59,7 @@ public class ShowExpectedColorActivity extends Activity {
                 timer.addObserver(observer);
             }
         }
-        gameMode = gameMode.substring(0,1).toUpperCase() + gameMode.substring(1).toLowerCase();
-        gameModeTitle.setText(String.format("%s\nMode",gameMode));
+        gameModeTitle.setText(String.format("%s\nMode",game.getGameMode().name()));
         background = findViewById(R.id.expectedColorBackground);
         background.setBackgroundColor(getIntent().getIntExtra("expectedColor",0));
         Runnable run = () -> {

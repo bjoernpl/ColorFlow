@@ -22,6 +22,7 @@ public abstract class Flow extends View {
     final   AttributeSet attrs;
     float[] positions = null;
     int[]   colors;
+    Level level;
     Shader colorGradient;
 
     int     frame;
@@ -53,6 +54,7 @@ public abstract class Flow extends View {
         this.angle = level.getAngle();
         this.expectedColor = level.getExpectedColor();
         this.leftToRight = level.isLeftToRight();
+        this.level = level;
         WIDTH = colors.length;
     }
 
@@ -145,5 +147,9 @@ public abstract class Flow extends View {
     }
     public static int getB(int color){
         return (color      ) & 0xff;
+    }
+
+    private Level getLevel(){
+        return level;
     }
 }

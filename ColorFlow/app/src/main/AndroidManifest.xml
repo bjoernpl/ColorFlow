@@ -10,18 +10,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Levels.LevelChooser" />
-        <activity android:name=".Activities.GameActivity" />
-        <activity android:name=".Activities.FlowModeSelectActivity" />
-        <activity android:name=".Activities.StartActivity">
+        <activity android:name=".Activities.Ingame.GameActivity" />
+        <activity android:name=".Activities.Pregame.FlowModeSelectActivity" />
+        <activity android:name=".Activities.Pregame.StartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.GameModeSelectActivity" />
-        <activity android:name=".Activities.ShowExpectedColorActivity" />
-        <activity android:name=".Activities.SpeedModeTimeOver"></activity>
+        <activity android:name=".Activities.Ingame.ShowExpectedColorActivity" />
+        <activity android:name=".Activities.Ingame.SpeedModeTimeOver" />
     </application>
 
 </manifest>

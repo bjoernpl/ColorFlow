@@ -7,7 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.android.colorflow.Activities.GameActivity;
+import com.example.android.colorflow.Activities.Ingame.GameActivity;
 import com.example.android.colorflow.R;
 
 public class LevelChooser extends Activity {

@@ -1,10 +1,11 @@
-package com.example.android.colorflow.Activities;
+package com.example.android.colorflow.Activities.Ingame;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +13,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.colorflow.GameModes.Flow;
+import com.example.android.colorflow.GameModes.Game;
 import com.example.android.colorflow.Levels.Level;
 import com.example.android.colorflow.Levels.LevelHandler;
-import com.example.android.colorflow.Levels.LevelRandomizer;
 import com.example.android.colorflow.Statistics.Highscore;
 import com.example.android.colorflow.Statistics.PointsHandler;
 import com.example.android.colorflow.R;
@@ -37,54 +38,61 @@ public class GameActivity extends Activity {
     private TextView adjectiveView;
     private TextView sessionScoreView;
     private TextView totalScoreView;
+    private Game.FlowMode flowMode;
+    private Game.GameMode gameMode;
     private boolean pressedRestart = false;
     private int index;
     private boolean finished = false;
     private boolean succeeded = false;
-    private String gameMode;
 
     @SuppressLint("DefaultLocale")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        String flowMode = getIntent().getStringExtra("flowMode");
-        if(flowMode.equals("random")){
-            flowMode = new Random().nextBoolean()?"linear":"radial";
-        }
-        if(flowMode.equals("radial")){
+        Game game = getIntent().getParcelableExtra("game");
+        initialiseGame(game);
+
+        if(flowMode.equals(Game.FlowMode.Radial)){
             setContentView(R.layout.activity_game_radial);
-        }else if(flowMode.equals("linear")){
+        }else if(flowMode.equals(Game.FlowMode.Linear)){
             setContentView(R.layout.activity_game);
         }
-        gameMode = getIntent().getStringExtra("gameMode");
-        if(gameMode!=null&&gameMode.equals("speed")){
-            startTimer();
+        if(gameMode.equals(Game.GameMode.Speed)){
+            startTimer(game.getTime());
         }
         setFullscreen();
         initialiseViews();
         setListeners();
 
-        if(getIntent().hasExtra("difficulty")){
-            int difficulty = getIntent().getIntExtra("difficulty",0);
-            LevelHandler.getInstance().setColors(this,difficulty);
-        }else {
-            LevelHandler.getInstance().setColors(this);
-        }
-        index = getIntent().getIntExtra("level",0);
-        level = LevelHandler.getInstance().getLevel(index);
         levelTitle.setText(String.format("Level %d",index));
         colorFlow.setLevel(level);
 
         showExpectedColor();
     }
 
-    private void startTimer() {
-        Timer timer = Timer.getInstance();
-        if(timer.isRunning()) timer.addObserver((observable, o) -> {
-            if (((int) o) == 0) {
-                showSpeedModeTimeOver();
-            }
-        });
+    private void initialiseGame(Game game) {
+        flowMode = game.getFlowMode();
+        gameMode = game.getGameMode();
+        index = game.getIndex();
+        if(game.getDifficulty()!=null){
+            LevelHandler.getInstance().setColors(this,game.getDifficulty());
+        }else {
+            LevelHandler.getInstance().setColors(this);
+        }
+        level = LevelHandler.getInstance().getLevel(index);
+    }
+
+    private void startTimer(int duration) {
+        if(!Timer.getInstance().isRunning()){
+            Timer.getInstance().setTime(duration).addTimeObserver(new Observer() {
+                @Override
+                public void update(Observable observable, Object o) {
+                    if(o!=null){
+
+                    }
+                }
+            }).startTimer();
+        }
     }
 
     private void showSpeedModeTimeOver() {
@@ -127,6 +135,15 @@ public class GameActivity extends Activity {
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
     @SuppressLint("DefaultLocale")
     private void success(int accuracy){
@@ -147,10 +164,9 @@ public class GameActivity extends Activity {
             PointsHandler.getInstance().saveHighscore(GameActivity.this);
             LevelHandler.getInstance().incrementLevel();
             Intent intent = new Intent(GameActivity.this, GameActivity.class);
-            intent.putExtra("level", index + 1);
-            intent.putExtra("flowMode", getIntent().getStringExtra("flowMode"));
-            intent.putExtra("gameMode",getIntent().getStringExtra("gameMode"));
-            if(getIntent().hasExtra("timeMode"))intent.putExtra("timeMode",getIntent().getIntExtra("timeMode",10));
+            Game game = getIntent().getParcelableExtra("game");
+            game.setIndex(game.getIndex()+1);
+            intent.putExtra("game",game);
             startActivity(intent);
         }
     }
@@ -167,8 +183,7 @@ public class GameActivity extends Activity {
                 pressedRestart = true;
                 finish();
                 Intent intent = new Intent(GameActivity.this, GameActivity.class);
-                intent.putExtra("level", index);
-                intent.putExtra("flowMode",getIntent().getStringExtra("flowMode"));
+                intent.putExtra("game",(Game)getIntent().getParcelableExtra("game"));
                 startActivity(intent);
                 overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
             }else{
@@ -239,9 +254,8 @@ public class GameActivity extends Activity {
 
     private void showExpectedColor() {
         Intent intent = new Intent(this, ShowExpectedColorActivity.class);
+        intent.putExtra("game",(Game) getIntent().getParcelableExtra("game"));
         intent.putExtra("expectedColor", level.getExpectedColor());
-        intent.putExtra("gameMode", getIntent().getStringExtra("gameMode"));
-        if(getIntent().hasExtra("timeMode"))intent.putExtra("timeMode",getIntent().getIntExtra("timeMode",10));
         startActivityForResult(intent,2);
 
     }

@@ -4,13 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:alpha="0"
     android:background="@android:color/transparent"
-    tools:context=".Activities.StartActivity">
+    tools:context=".Fragments.ChooseGameModeFragment">
 
     <TextView
         android:id="@+id/backTextView"
-        android:onClick="backClicked"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
@@ -32,7 +30,6 @@
 
         <RelativeLayout
             android:id="@+id/rl_casual_mode"
-            android:onClick="modeClicked"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -57,7 +54,6 @@
 
         <RelativeLayout
             android:id="@+id/rl_speed_mode"
-            android:onClick="modeClicked"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1">
@@ -93,7 +89,6 @@
         <RelativeLayout
             android:id="@+id/rl_continuous_mode"
             android:layout_width="0dp"
-            android:onClick="modeClicked"
             android:layout_height="match_parent"
             android:layout_weight="1">
 
@@ -118,7 +113,6 @@
         <RelativeLayout
             android:id="@+id/rl_endurance_mode"
             android:layout_width="0dp"
-            android:onClick="modeClicked"
             android:layout_height="match_parent"
             android:layout_weight="1">
 

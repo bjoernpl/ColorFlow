@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import com.example.android.colorflow.GameModes.Game;
 import com.example.android.colorflow.Resources.ColorHandler;
 
 import java.util.ArrayList;
@@ -21,13 +22,13 @@ public class LevelHandler extends Observable{
     private ArrayList<Level> levels;
     private int currentLevel = 1;
     private static int[] colors = null;
-    static int difficulty = 0;
+    static Game.Difficulty difficulty = Game.Difficulty.Easy;
 
     private LevelHandler(){
 
     }
 
-    public void setColors(Context context,int difficulty){
+    public void setColors(Context context, Game.Difficulty difficulty){
         this.difficulty = difficulty;
         setColors(context);
     }
@@ -101,7 +102,7 @@ public class LevelHandler extends Observable{
     static class RandomLevelTask extends AsyncTask<Integer,Void,Level> {
         @Override
         protected Level doInBackground(Integer... integers) {
-            if(difficulty!=0)return LevelRandomizer.getRandomLevel(integers[0],colors,difficulty);
+            if(difficulty!=null)return LevelRandomizer.getRandomLevel(integers[0],colors,difficulty);
             return LevelRandomizer.getRandomLevel(integers[0],colors);
         }
     }

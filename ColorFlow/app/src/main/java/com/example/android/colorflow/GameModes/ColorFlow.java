@@ -38,10 +38,18 @@ public class ColorFlow extends Flow {
         paint.setShader(colorGradient);
     }
 
+    public void startFromStatus(FlowStatus status){
+        super.setLevel(status.getLevel());
+
+        colorGradient = new LinearGradient(status.getX1(), status.getY1(), status.getX2(), status.getY2(), colors, null, TILEMODE);
+        paint = new Paint();
+        paint.setShader(colorGradient);
+        start();
+    }
+
     public void start(){
         super.start();
         this.setVisibility(VISIBLE);
-        invalidate();
     }
 
 
@@ -120,6 +128,13 @@ public class ColorFlow extends Flow {
             canvas.drawPaint(paint);
             invalidate();
     }
+
+    public FlowStatus getStatus(){
+        return new FlowStatus(x0,x1,y,y1,level);
+    }
+
+
+
 
 
 

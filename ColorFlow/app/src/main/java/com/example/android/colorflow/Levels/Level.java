@@ -1,10 +1,15 @@
 package com.example.android.colorflow.Levels;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.example.android.colorflow.GameModes.Game;
+
 /**
  * Created by bjoer on 6/24/2018.
  */
 
-public class Level {
+public class Level implements Parcelable {
     private int levelIndex;
     private int requiredAccuracy;
     private int[] colors;
@@ -78,4 +83,48 @@ public class Level {
     public void setAngle(float angle) {
         this.angle = angle;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+
+        dest.writeInt(levelIndex);
+        dest.writeInt(requiredAccuracy);
+        dest.writeIntArray(colors);
+        dest.writeInt(expectedColor);
+        dest.writeInt(speed);
+        dest.writeFloat(angle);
+        dest.writeByte((byte) (leftToRight?1:0));
+
+    }
+
+    private void readFromParcel(Parcel in) {
+        levelIndex = in.readInt();
+        requiredAccuracy = in.readInt();
+        colors = in.createIntArray();
+        expectedColor = in.readInt();
+        speed = in.readInt();
+        angle = in.readFloat();
+        leftToRight = in.readByte()==1;
+    }
+
+    public Level(Parcel in) {
+        readFromParcel(in);
+    }
+
+    public static final Parcelable.Creator<Level> CREATOR = new Parcelable.Creator<Level>() {
+        @Override
+        public Level createFromParcel(Parcel source) {
+            return new Level(source);
+        }
+
+        @Override
+        public Level[] newArray(int size) {
+            return new Level[size];
+        }
+    };
 }

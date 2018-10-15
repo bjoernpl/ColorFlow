@@ -1,5 +1,6 @@
 package com.example.android.colorflow.Levels;
 
+import com.example.android.colorflow.GameModes.Game;
 import com.example.android.colorflow.Levels.Level;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class LevelRandomizer {
 
 
     private static ArrayList<Integer> colorlist;
-    private static int difficulty = 0;
+    private static Game.Difficulty difficulty = null;
 
     public static Level getStartLevel(int[] colors){
         colorlist = new ArrayList<>();
@@ -29,7 +30,7 @@ public class LevelRandomizer {
                 new Random().nextBoolean());
     }
 
-    public static Level getRandomLevel(int index, int[] colors, int difficultysetter){
+    public static Level getRandomLevel(int index, int[] colors, Game.Difficulty difficultysetter){
         difficulty = difficultysetter;
         return getRandomLevel(index,colors);
     }
@@ -53,11 +54,11 @@ public class LevelRandomizer {
     }
 
     private static int getRandomSpeed(int index){
-        if(difficulty!=0){
+        if(difficulty!=null){
             switch (difficulty){
-                case 1: return 2;
-                case 2: return 4;
-                case 3: return 7;
+                case Easy: return 2;
+                case Medium: return 4;
+                case Hard: return 7;
             }
         }
         Random random = new Random();

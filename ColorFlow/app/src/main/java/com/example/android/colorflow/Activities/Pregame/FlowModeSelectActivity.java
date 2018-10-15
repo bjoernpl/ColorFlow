@@ -1,19 +1,20 @@
-package com.example.android.colorflow.Activities;
+package com.example.android.colorflow.Activities.Pregame;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.example.android.colorflow.Activities.Ingame.GameActivity;
 import com.example.android.colorflow.GameModes.ColorFlow;
 import com.example.android.colorflow.GameModes.ColorFlowRadial;
+import com.example.android.colorflow.GameModes.Game;
 import com.example.android.colorflow.Levels.LevelRandomizer;
 import com.example.android.colorflow.Resources.ColorHandler;
 import com.example.android.colorflow.Statistics.Highscore;
@@ -104,16 +105,16 @@ public class FlowModeSelectActivity extends Activity{
 
     private void startLevel() {
         Intent intent = new Intent(FlowModeSelectActivity.this, GameActivity.class);
-        intent.putExtra("level",1);
+        Game game = getIntent().getParcelableExtra("game");
+        game.setIndex(1);
         if(group.getCheckedRadioButtonId()==R.id.radioButton){
-            intent.putExtra("flowMode","linear");
+            game.setFlowMode(Game.FlowMode.Linear);
         }else if(group.getCheckedRadioButtonId()==R.id.radioButton2){
-            intent.putExtra("flowMode","radial");
+            game.setFlowMode(Game.FlowMode.Radial);
         }else{
-            intent.putExtra("flowMode","random");
+            game.setFlowMode(Game.FlowMode.Random);
         }
-        intent.putExtra("gameMode",getIntent().getStringExtra("gameMode"));
-        if(getIntent().hasExtra("timeMode"))intent.putExtra("timeMode",getIntent().getIntExtra("timeMode",10));
+        intent.putExtra("game",game);
         startActivity(intent);
     }
 

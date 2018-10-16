@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ColorFlow</string>
+    <string name="app_name">Gradients</string>
     <string name="press_color_to_pass">Press this color to pass level</string>
     <string name="highscore_text">Highscore: Level %d with %d Points</string>
 

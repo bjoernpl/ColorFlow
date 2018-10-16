@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.colorflow">
+    package="com.bnpgames.android.Gradients">
+    <uses-permission android:name="com.android.vending.BILLING"/>
 
     <application
         android:allowBackup="true"
@@ -9,6 +10,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-8431172432849630~7417322490"/>
+
         <activity android:name=".Levels.LevelChooser" />
         <activity android:name=".Activities.Ingame.GameActivity" />
         <activity android:name=".Activities.Pregame.FlowModeSelectActivity" />
@@ -21,7 +26,7 @@
         </activity>
         <activity android:name=".Activities.Ingame.ShowExpectedColorActivity" />
         <activity android:name=".Activities.Ingame.SpeedModeTimeOver" />
-        <activity android:name=".Activities.Ingame.NewGameActivity"></activity>
     </application>
+
 
 </manifest>

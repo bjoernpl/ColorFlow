@@ -4,4 +4,5 @@
     <string name="highscore_text">Highscore: Level %d with %d Points</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="not_enough_points_to_restart">Not enough points!</string>
 </resources>

@@ -47,7 +47,7 @@ public class ShowExpectedColorActivity extends Activity {
         pbar = findViewById(R.id.progressbar);
         Game game = getIntent().getParcelableExtra("game");
         if(game.getGameMode().equals(Game.GameMode.Speed)){
-            time = getIntent().getIntExtra("timeMode",10);
+            time = game.getTime();
             TextView tv = findViewById(R.id.requiredAccuracy);
             tv.setText("Score as many points as possible in 10 seconds!\n\nTap anywhere to start timer!");
             remainingTime = findViewById(R.id.remaining_time);

@@ -8,6 +8,8 @@ import java.util.Observer;
 
 public class Timer extends Observable {
 
+    public static final int FINISHED = 233;
+
     /* Holds an instance of the Timer so it is accessible from different activities*/
     private static Timer instance;
 
@@ -55,7 +57,7 @@ public class Timer extends Observable {
             public void onFinish() {
                 isRunning = false;
                 setChanged();
-                notifyObservers();
+                notifyObservers(FINISHED);
             }
         };
         return this;

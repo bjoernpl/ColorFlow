@@ -2,6 +2,7 @@ package com.example.android.colorflow.Activities.Ingame;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.android.colorflow.GameModes.Flow;
 import com.example.android.colorflow.GameModes.Game;
+import com.example.android.colorflow.Helpers.FullscreenHelper;
 import com.example.android.colorflow.Levels.Level;
 import com.example.android.colorflow.Levels.LevelHandler;
 import com.example.android.colorflow.Statistics.Highscore;
@@ -26,18 +28,20 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.Random;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class GameActivity extends Activity {
 
     private Level level;
-    private Flow colorFlow;
-    private TextView colorTitle;
-    private TextView retryButton;
-    private TextView levelTitle;
-    private ViewGroup successGroup;
-    private TextView scoreView;
-    private TextView adjectiveView;
-    private TextView sessionScoreView;
-    private TextView totalScoreView;
+    @BindView(R.id.colorflow) Flow colorFlow;
+    @BindView(R.id.retryButton) TextView retryButton;
+    @BindView(R.id.levelTitle) TextView levelTitle;
+    @BindView(R.id.successGroup) ViewGroup successGroup;
+    @BindView(R.id.scoreTextView) TextView scoreView;
+    @BindView(R.id.adjectiveTextView) TextView adjectiveView;
+    @BindView(R.id.totalScoreTextView) TextView sessionScoreView;
+    @BindView(R.id.totalScoreText) TextView totalScoreView;
     private Game.FlowMode flowMode;
     private Game.GameMode gameMode;
     private boolean pressedRestart = false;
@@ -57,11 +61,11 @@ public class GameActivity extends Activity {
         }else if(flowMode.equals(Game.FlowMode.Linear)){
             setContentView(R.layout.activity_game);
         }
+        ButterKnife.bind(this);
         if(gameMode.equals(Game.GameMode.Speed)){
             startTimer(game.getTime());
         }
-        setFullscreen();
-        initialiseViews();
+        FullscreenHelper.setFullscreen(this);
         setListeners();
 
         levelTitle.setText(String.format("Level %d",index));
@@ -69,6 +73,8 @@ public class GameActivity extends Activity {
 
         showExpectedColor();
     }
+
+
 
     private void initialiseGame(Game game) {
         flowMode = game.getFlowMode();
@@ -84,12 +90,9 @@ public class GameActivity extends Activity {
 
     private void startTimer(int duration) {
         if(!Timer.getInstance().isRunning()){
-            Timer.getInstance().setTime(duration).addTimeObserver(new Observer() {
-                @Override
-                public void update(Observable observable, Object o) {
-                    if(o!=null){
-
-                    }
+            Timer.getInstance().addTimeObserver((observable, o) -> {
+                if((int)o==Timer.FINISHED){
+                    showSpeedModeTimeOver();
                 }
             }).startTimer();
         }
@@ -99,10 +102,9 @@ public class GameActivity extends Activity {
         finished = true;
         finish();
         Intent intent = new Intent(this,SpeedModeTimeOver.class);
-        intent.putExtra("timeMode",getIntent().getIntExtra("timeMode",10));
+        Game game = getIntent().getParcelableExtra("game");
         intent.putExtra("totalScore",PointsHandler.getInstance().getScore());
-        intent.putExtra("gameMode",gameMode);
-        intent.putExtra("flowMode",getIntent().getStringExtra("flowMode"));
+        intent.putExtra("game",game);
         startActivity(intent);
         PointsHandler.getInstance().reset();
         LevelHandler.getInstance().reset();
@@ -111,7 +113,7 @@ public class GameActivity extends Activity {
     @SuppressLint("DefaultLocale")
     private void failure(int accuracy){
         showFailBorder();
-        if(gameMode.equals("speed")){
+        if(gameMode.equals(Game.GameMode.Speed)){
             colorFlow.setPaused(true);
             adjectiveView.setText("Not close enough!");
             successGroup.setVisibility(View.VISIBLE);
@@ -221,25 +223,6 @@ public class GameActivity extends Activity {
         View view = findViewById(R.id.fail_border);
         view.animate().alpha(1.0f).setDuration(200).start();
         new Handler().postDelayed(() -> view.animate().alpha(0f).setDuration(400).start(),400);
-    }
-
-    private void initialiseViews() {
-        levelTitle      = findViewById(R.id.levelTitle);
-        colorFlow       = findViewById(R.id.colorflow);
-        //colorFlow       = getIntent().getStringExtra("flowMode").equals("radial")? new ColorFlowRadial(this,colorFlow.getAttrs()): new ColorFlow(this,colorFlow.getAttrs());
-        retryButton     = findViewById(R.id.retryButton);
-        successGroup    = findViewById(R.id.successGroup);
-        scoreView       = findViewById(R.id.scoreTextView);
-        sessionScoreView = findViewById(R.id.totalScoreTextView);
-        totalScoreView =  findViewById(R.id.totalScoreText);
-        adjectiveView   = findViewById(R.id.adjectiveTextView);
-    }
-
-    private void setFullscreen() {
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE;
-        decorView.setSystemUiVisibility(uiOptions);
     }
 
 

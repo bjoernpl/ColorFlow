@@ -21,6 +21,7 @@
         </activity>
         <activity android:name=".Activities.Ingame.ShowExpectedColorActivity" />
         <activity android:name=".Activities.Ingame.SpeedModeTimeOver" />
+        <activity android:name=".Activities.Ingame.NewGameActivity"></activity>
     </application>
 
 </manifest>

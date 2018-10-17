@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
-    tools:context="com.example.android.colorflow.Activities.Ingame.GameActivity">
+    tools:context="com.bnpgames.android.Gradients.Activities.Ingame.GameActivity">
 
     <View
         android:layout_width="match_parent"
@@ -58,7 +58,7 @@
         android:textStyle="bold"
         android:visibility="gone" />
 
-    <com.example.android.colorflow.GameModes.ColorFlowRadial
+    <com.bnpgames.android.Gradients.GameModes.ColorFlowRadial
         android:id="@+id/colorflow"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />

@@ -38,6 +38,7 @@
         android:layout_height="211dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:checkedButton="@id/radioButton"
         android:layout_marginBottom="170dp">
 
         <RadioButton
@@ -45,11 +46,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@android:color/holo_purple"
+            android:buttonTint="@android:color/white"
             android:text="Linear"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/holo_purple"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -58,11 +59,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@android:color/holo_orange_dark"
+            android:buttonTint="@android:color/white"
             android:text="Radial"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/holo_orange_dark"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -71,11 +72,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:buttonTint="@android:color/holo_green_light"
+            android:buttonTint="@android:color/white"
             android:text="Random"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/holo_green_light"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -89,10 +90,9 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
-        android:drawableTint="@android:color/holo_red_light"
         android:text="Back"
         android:padding="5dp"
-        android:textColor="@android:color/holo_red_light"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -104,10 +104,10 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:drawableLeft="@drawable/ic_color_lens_white_24dp"
-        android:drawableTint="@android:color/holo_red_light"
         android:padding="5dp"
         android:text="4200"
-        android:textColor="@android:color/holo_red_light"
+        android:visibility="gone"
+        android:textColor="@android:color/white"
         android:textSize="24sp"
         android:textStyle="bold" />
 
@@ -122,6 +122,5 @@
         android:text="Start Game!"
         android:textColor="@android:color/white"
         android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+        android:textStyle="bold" />
 </RelativeLayout>

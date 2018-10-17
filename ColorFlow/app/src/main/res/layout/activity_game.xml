@@ -5,120 +5,145 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
-    tools:context="com.example.android.colorflow.Activities.Ingame.GameActivity">
+    tools:context="com.bnpgames.android.Gradients.Activities.Ingame.GameActivity">
 
-    <View
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/gameBackground"
-        android:elevation="1dp"/>
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/levelTitle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:textAlignment="center"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp"
-        android:layout_marginTop="20dp"
-        android:elevation="1dp"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/totalScoreText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="15dp"
-        android:drawableLeft="@drawable/ic_color_lens_white_24dp"
-        android:padding="5dp"
-        android:text="4200"
-        android:visibility="gone"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+            <View
+                android:id="@+id/gameBackground"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:elevation="1dp" />
 
-    <TextView
-        android:id="@+id/retryButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="168dp"
-        android:background="@drawable/square_background"
-        android:drawableRight="@drawable/ic_color_lens_white_24dp"
-        android:elevation="1dp"
-        android:padding="10dp"
-        android:text="Retry!"
-        android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-        android:textColor="#FFFFFF"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        android:visibility="gone" />
+            <TextView
+                android:id="@+id/levelTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
+                android:elevation="1dp"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
 
-    <com.example.android.colorflow.GameModes.ColorFlow
-        android:id="@+id/colorflow"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+            <TextView
+                android:id="@+id/totalScoreText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="15dp"
+                android:drawableLeft="@drawable/ic_color_lens_white_24dp"
+                android:padding="5dp"
+                android:text="4200"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
-    <View
-        android:id="@+id/fail_border"
-        android:elevation="20dp"
-        android:alpha="0"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/red_border"/>
+            <TextView
+                android:id="@+id/retryButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="168dp"
+                android:background="@drawable/square_background"
+                android:drawableRight="@drawable/ic_color_lens_white_24dp"
+                android:elevation="1dp"
+                android:padding="10dp"
+                android:text="Retry!"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:visibility="gone" />
 
-    <RelativeLayout
-        android:id="@+id/successGroup"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:visibility="gone">
+            <com.bnpgames.android.Gradients.GameModes.ColorFlow
+                android:id="@+id/colorflow"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
 
-        <TextView
-            android:id="@+id/scoreTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="171dp"
-            android:text="90"
-            android:textAlignment="center"
-            android:textAppearance="@android:style/TextAppearance.Material.Title"
-            android:textColor="@android:color/white"
-            android:textSize="140sp"
-            android:textStyle="bold"
-            android:typeface="normal" />
+            <View
+                android:id="@+id/fail_border"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:alpha="0"
+                android:background="@drawable/red_border"
+                android:elevation="20dp" />
 
-        <TextView
-            android:id="@+id/adjectiveTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="87dp"
-            android:text="nice!"
-            android:textAlignment="center"
-            android:textAllCaps="true"
-            android:textColor="#FFFFFF"
-            android:textSize="46sp"
-            android:textStyle="bold|italic" />
+            <RelativeLayout
+                android:id="@+id/successGroup"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:visibility="gone">
 
-        <TextView
-            android:id="@+id/totalScoreTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="83dp"
-            android:text="Score: 420"
-            android:textColor="@android:color/white"
-            android:textSize="30sp"
-            android:textStyle="bold" />
-    </RelativeLayout>
+                <TextView
+                    android:id="@+id/scoreTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="171dp"
+                    android:text="90"
+                    android:textAlignment="center"
+                    android:textAppearance="@android:style/TextAppearance.Material.Title"
+                    android:textColor="@android:color/white"
+                    android:textSize="140sp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <TextView
+                    android:id="@+id/adjectiveTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="87dp"
+                    android:text="nice!"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="#FFFFFF"
+                    android:textSize="46sp"
+                    android:textStyle="bold|italic" />
+
+                <TextView
+                    android:id="@+id/totalScoreTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="83dp"
+                    android:text="Score: 420"
+                    android:textColor="@android:color/white"
+                    android:textSize="30sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <com.google.android.gms.ads.AdView
+                xmlns:ads="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/adViewGameScreen"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:elevation="4dp"
+                android:visibility="gone"
+                ads:adSize="SMART_BANNER"
+                ads:adUnitId="ca-app-pub-8431172432849630/7274347106"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
 
 </RelativeLayout>

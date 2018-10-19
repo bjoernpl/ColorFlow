@@ -12,13 +12,12 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="115dp"
             android:elevation="10dp"
-
-            android:fontFamily="sans-serif"
             android:text="GRADIENTS"
-            android:textAlignment="textStart"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textColor="#FFFFFF"
-            android:textSize="56sp"
+            android:textSize="60sp"
+            android:letterSpacing="0.2"
             android:textStyle="bold"
             android:typeface="normal" />
 
@@ -95,7 +94,6 @@
             android:drawableLeft="@drawable/ic_color_lens_white_24dp"
             android:padding="4dp"
             android:text="4200"
-            android:visibility="gone"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             android:textStyle="bold" />

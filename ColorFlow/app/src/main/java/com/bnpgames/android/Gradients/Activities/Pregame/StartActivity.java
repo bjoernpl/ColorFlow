@@ -1,7 +1,9 @@
 package com.bnpgames.android.Gradients.Activities.Pregame;
 
 import android.app.Activity;
+import android.app.Application;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,12 +20,18 @@ import android.widget.Toast;
 
 import com.bnpgames.android.Gradients.Activities.Ingame.GameActivity;
 import com.bnpgames.android.Gradients.Fragments.ChooseGameModeFragment;
+import com.bnpgames.android.Gradients.Fragments.CreditsFragment;
 import com.bnpgames.android.Gradients.Fragments.FailedFragment;
 import com.bnpgames.android.Gradients.Fragments.FlowModeFragment;
+import com.bnpgames.android.Gradients.Fragments.SettingsFragment;
 import com.bnpgames.android.Gradients.Fragments.SpeedModeFragment;
 import com.bnpgames.android.Gradients.Fragments.StartFragment;
 import com.bnpgames.android.Gradients.GameModes.ColorFlow;
 import com.bnpgames.android.Gradients.GameModes.Game;
+import com.bnpgames.android.Gradients.Helpers.ActivityLifecycleHelper;
+import com.bnpgames.android.Gradients.Helpers.FullscreenHelper;
+import com.bnpgames.android.Gradients.Helpers.GameFinishedHelper;
+import com.bnpgames.android.Gradients.Helpers.MusicHelper;
 import com.bnpgames.android.Gradients.Levels.LevelRandomizer;
 import com.bnpgames.android.Gradients.R;
 import com.bnpgames.android.Gradients.Resources.ColorHandler;
@@ -36,6 +44,7 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.doubleclick.PublisherAdRequest;
 import com.google.android.gms.ads.doubleclick.PublisherAdView;
 import com.google.ads.consent.*;
+import com.google.android.gms.common.api.internal.LifecycleActivity;
 
 
 import java.util.List;
@@ -44,10 +53,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class StartActivity extends FragmentActivity implements FlowModeFragment.StartGameListener,
+        ActivityLifecycleHelper.Listener,
         ChooseGameModeFragment.OnGameModeChosenListener,
         StartFragment.OnButtonPressedListener,
         SpeedModeFragment.OnSpeedModeSelectedListener ,
-        FailedFragment.OnFragmentInteractionListener
+        FailedFragment.OnFragmentInteractionListener,
+        SettingsFragment.OnSettingsInteractionListener
 {
 
     @Nullable @BindView(R.id.highscore_text) TextView highscoretext;
@@ -56,6 +67,7 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
     @BindView(R.id.colorflow) ColorFlow colorFlow;
     private static final int REQUEST_CODE_GAME = 335;
     public static final int RESULT_CODE_LOST = 299;
+
     View startView;
     View gameModeView;
     private Game game;
@@ -64,17 +76,41 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setFullscreen();
+        getApplication().registerActivityLifecycleCallbacks(new ActivityLifecycleHelper(this));
+        FullscreenHelper.setFullscreen(this);
         setContentView(R.layout.activity_start);
         ButterKnife.bind(this);
         initialiseAds();
-
-
 
         getSupportFragmentManager().beginTransaction().add(R.id.start_frame,new StartFragment()).addToBackStack(null).commit();
 
         colorFlow.setLevel(LevelRandomizer.getStartLevel(ColorHandler.getColors(this)));
         colorFlow.start();
+    }
+
+    @Override
+    public void onCreditsClicked() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.start_frame,new CreditsFragment()).addToBackStack(null).commit();
+    }
+
+    @Override
+    public void onDisableAdsClicked() {
+
+    }
+
+    @Override
+    public void onBackPressedFromSettings() {
+        getSupportFragmentManager().popBackStack();
+    }
+
+    @Override
+    public void onEnterForeground() {
+        MusicHelper.getInstance(this).restart(this);
+    }
+
+    @Override
+    public void onEnterBackground() {
+        MusicHelper.getInstance(this).release(this);
     }
 
     private void initialiseAds() {
@@ -133,6 +169,13 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
         switch(button){
             case Start:
                 getSupportFragmentManager().beginTransaction().replace(R.id.start_frame,new FlowModeFragment()).addToBackStack(null).commit();
+                break;
+            case Profile:
+                Toast.makeText(StartActivity.this,"Premium version will be enabled soon!",Toast.LENGTH_LONG).show();
+                break;
+            case Settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.start_frame,new SettingsFragment()).addToBackStack(null).commit();
+                break;
         }
     }
 
@@ -161,6 +204,18 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
     }
 
     @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("stopped","yo");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i("restarted","yo");
+    }
+
+    @Override
     public void onPlayAgainClicked() {
         Intent intent = new Intent(StartActivity.this, GameActivity.class);
         intent.putExtra("game",game);
@@ -170,7 +225,7 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
     @Override
     protected void onResume() {
         colorFlow.setLevel(LevelRandomizer.getStartLevel(ColorHandler.getColors(this)));
-        setFullscreen();
+        FullscreenHelper.setFullscreen(this);
         super.onResume();
     }
 
@@ -178,20 +233,17 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
         getSupportFragmentManager().popBackStack();
     }
 
-    private void setFullscreen() {
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_FULLSCREEN | View.SYSTEM_UI_FLAG_IMMERSIVE;
-        decorView.setSystemUiVisibility(uiOptions);
-    }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode==REQUEST_CODE_GAME){
-            if(resultCode==RESULT_OK && data!=null && data.hasExtra("gamefinished")){
+            if((resultCode==RESULT_OK && data!=null && data.hasExtra("gamefinished"))){
                 getSupportFragmentManager().popBackStack();
                 getSupportFragmentManager().beginTransaction().replace(R.id.start_frame, FailedFragment.newInstance(data.getParcelableExtra("gamefinished"))).addToBackStack(null).commit();
+            }else if(GameFinishedHelper.getInstance()!=null&&GameFinishedHelper.getInstance().getGameFinished()!=null){
+                getSupportFragmentManager().popBackStack();
+                getSupportFragmentManager().beginTransaction().replace(R.id.start_frame, FailedFragment.newInstance(GameFinishedHelper.getInstance().getGameFinished())).addToBackStack(null).commit();
             }
         }
     }

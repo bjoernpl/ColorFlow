@@ -106,7 +106,7 @@ public class FlowModeFragment extends Fragment {
             mListener = (StartGameListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnSettingsInteractionListener");
         }
     }
 

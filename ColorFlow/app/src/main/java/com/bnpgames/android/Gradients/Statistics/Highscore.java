@@ -11,9 +11,9 @@ import com.bnpgames.android.Gradients.Levels.Level;
 
 public class Highscore implements Parcelable{
 
-    int score;
-    int level;
-    float averageAccuracy;
+    private int score;
+    private int level;
+    private float averageAccuracy;
 
     public Highscore(int score, int level, float averageAccuracy) {
         this.score = score;

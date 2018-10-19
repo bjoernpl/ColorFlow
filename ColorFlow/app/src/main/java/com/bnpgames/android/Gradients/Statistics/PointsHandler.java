@@ -16,7 +16,7 @@ public class PointsHandler extends Observable{
     private int score = 0;
     private int attempts = 1;
 
-    private static final int RETRY_COST = 200;
+    private static final int RETRY_COST = 400;
 
     public static PointsHandler getInstance(){
         if(instance==null){
@@ -36,6 +36,10 @@ public class PointsHandler extends Observable{
         notifyObservers(totalScore);
     }
 
+    public int getTotalScore(){
+        return totalScore;
+    }
+
     public void addScore(int score,Context context){
         this.score += score;
         this.totalScore += score;
@@ -51,8 +55,8 @@ public class PointsHandler extends Observable{
     public boolean retry(Context context){
         int cost = RETRY_COST*attempts;
         attempts += 1;
-        if(score>=cost){
-            score -= cost;
+        if(totalScore>=cost){
+            totalScore -= cost;
             saveTotalScore(context);
             return true;
         }else{
@@ -91,7 +95,7 @@ public class PointsHandler extends Observable{
         return new Highscore(preferences.getInt("score",0),preferences.getInt("level",0),preferences.getFloat("accuracy",0));
     }
 
-    public boolean isHIghscore(Context context){
+    public boolean isHighscore(Context context){
         return getHighscore(context).getScore()<score;
     }
 }

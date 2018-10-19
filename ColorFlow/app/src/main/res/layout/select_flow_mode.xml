@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="158dp"
-        android:text="Choose a flow mode"
+        android:text="Choose a gradient"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/white"

@@ -2,6 +2,7 @@ package com.bnpgames.android.Gradients.Fragments;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import com.bnpgames.android.Gradients.Levels.GameFinished;
 import com.bnpgames.android.Gradients.R;
 import com.bnpgames.android.Gradients.Statistics.Highscore;
+import com.bnpgames.android.Gradients.Statistics.PointsHandler;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -43,6 +45,8 @@ public class FailedFragment extends Fragment {
     @BindView(R.id.totalScoreText) TextView totalScoreText;
     @BindView(R.id.levelText) TextView levelIndexText;
     @BindView(R.id.highScoreText) View highScoreText;
+    @BindView(R.id.totalpoints_numbers) TextView totalPoints;
+    @BindView(R.id.totalpoints_text_added) TextView addedPoints;
 
 
     public FailedFragment() {
@@ -88,10 +92,23 @@ public class FailedFragment extends Fragment {
         ButterKnife.bind(this,view);
         actualColorView.setBackgroundColor(gameFinished.getActualColor());
         expectedColorView.setBackgroundColor(gameFinished.getExpectedColor());
-        totalScoreText.setText(String.format("TOTAL SCORE: %d",gameFinished.getScore().getScore()));
+        totalScoreText.setText(String.format("SCORE: %d",gameFinished.getScore().getScore()));
         levelIndexText.setText(String.format("LEVEL %d",gameFinished.getScore().getLevel()));
         highScoreText.setVisibility(gameFinished.isHighScore() ? View.VISIBLE : View.GONE);
+        addedPoints.setText(String.format("+%d",gameFinished.getScore().getScore()));
+        int scoreBefore = PointsHandler.getInstance().getTotalScore()-gameFinished.getScore().getScore();
+        totalPoints.setText(""+ scoreBefore);
         return view;
+    }
+
+    @SuppressLint("DefaultLocale")
+    @OnClick({R.id.shareText})
+    void onSharePressed(){
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, String.format("I just got to level %d and score %d points in Gradients! Can you beat me? http://play.google.com/store/apps/details?id=com.bnpgames.android.Gradients",gameFinished.getScore().getLevel(),gameFinished.getScore()));
+        sendIntent.setType("text/plain");
+        startActivity(Intent.createChooser(sendIntent, "Share with"));
     }
 
     @OnClick({R.id.nextButton,R.id.backTextView})
@@ -109,7 +126,7 @@ public class FailedFragment extends Fragment {
             mListener = (OnFragmentInteractionListener) context;
         } else {
             throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+                    + " must implement OnSettingsInteractionListener");
         }
     }
 

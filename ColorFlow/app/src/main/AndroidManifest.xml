@@ -2,30 +2,37 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bnpgames.android.Gradients">
     <uses-permission android:name="com.android.vending.BILLING"/>
+    <uses-feature android:name="android.hardware.screen.portrait" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-8431172432849630~7417322490"/>
 
-        <activity android:name=".Levels.LevelChooser" />
-        <activity android:name=".Activities.Ingame.GameActivity" />
-        <activity android:name=".Activities.Pregame.FlowModeSelectActivity" />
-        <activity android:name=".Activities.Pregame.StartActivity">
+        <activity android:name=".Levels.LevelChooser"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Ingame.GameActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Pregame.FlowModeSelectActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".Activities.Pregame.StartActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.Ingame.ShowExpectedColorActivity" />
-        <activity android:name=".Activities.Ingame.SpeedModeTimeOver" />
+        <activity android:name=".Activities.Ingame.ShowExpectedColorActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Activities.Ingame.SpeedModeTimeOver"
+            android:screenOrientation="portrait" />
     </application>
 
 

@@ -14,6 +14,9 @@ import com.bnpgames.android.Gradients.R;
 import com.bnpgames.android.Gradients.Statistics.Highscore;
 import com.bnpgames.android.Gradients.Statistics.PointsHandler;
 
+import java.util.Observable;
+import java.util.Observer;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,6 +29,7 @@ public class StartFragment extends Fragment {
     TextView highscoretext;
     @BindView(R.id.totalScoreText)
     TextView totalScoreText;
+    private Observer highScoreObserver;
 
     public enum StartButton{
         Start,
@@ -45,36 +49,36 @@ public class StartFragment extends Fragment {
         View view = inflater.inflate(R.layout.start_screen, container, false);
         ButterKnife.bind(this,view);
         setHighscoreText(PointsHandler.getInstance().getHighscore(getActivity()));
-        PointsHandler.getInstance().addObserver((observable, o) -> {
+        highScoreObserver = (observable, o) -> {
             if (o instanceof Highscore) setHighscoreText((Highscore) o);
-        });
-        PointsHandler.getInstance().addObserver((observable, o) -> {
-            if(!(o instanceof Highscore)){
-                totalScoreText.setText(o+"");
-            }
-        });
+            else setTotalScoreText((int)o);
+        };
+        PointsHandler.getInstance().addObserver(highScoreObserver);
         PointsHandler.getInstance().loadPoints(getActivity());
         return view;
     }
 
-    private void setHighscoreText(Highscore score){
-        highscoretext.setText(String.format(getString(R.string.highscore_text),score.getLevel(),score.getScore()));
+    private void setTotalScoreText(int o) {
+        if(isAdded()) totalScoreText.setText(o+"");
     }
 
-    @OnClick({R.id.startplaying_text,R.id.profileText,R.id.settingsText})
+    private void setHighscoreText(Highscore score){
+        if(isAdded()) highscoretext.setText(String.format(getString(R.string.highscore_text),score.getLevel(),score.getScore()));
+    }
+
+    @OnClick({R.id.startplaying_text,R.id.profileText,R.id.settingsText,R.id.imageButton})
     public void modeClicked(View view){
         switch (view.getId()){
             case R.id.startplaying_text:
                 onButtonPressed(StartButton.Start);
                 break;
             case R.id.profileText:
-                onButtonPressed(StartButton.Profile);
                 return;
             case R.id.settingsText:
-                onButtonPressed(StartButton.Settings);
+                onButtonPressed(StartButton.Profile);
                 break;
             default:
-
+                onButtonPressed(StartButton.Settings);
                 break;
         }
     }
@@ -100,6 +104,7 @@ public class StartFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        PointsHandler.getInstance().deleteObserver(highScoreObserver);
     }
 
 

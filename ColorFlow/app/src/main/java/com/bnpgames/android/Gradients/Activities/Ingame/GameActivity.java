@@ -2,11 +2,9 @@ package com.bnpgames.android.Gradients.Activities.Ingame;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.support.annotation.ColorInt;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,11 +12,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.bnpgames.android.Gradients.Activities.Pregame.StartActivity;
-import com.bnpgames.android.Gradients.Fragments.FailedFragment;
 import com.bnpgames.android.Gradients.GameModes.Flow;
 import com.bnpgames.android.Gradients.GameModes.Game;
 import com.bnpgames.android.Gradients.Helpers.FullscreenHelper;
+import com.bnpgames.android.Gradients.Helpers.GameFinishedHelper;
 import com.bnpgames.android.Gradients.Levels.GameFinished;
 import com.bnpgames.android.Gradients.Levels.Level;
 import com.bnpgames.android.Gradients.Levels.LevelHandler;
@@ -31,8 +28,6 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 
-import java.util.Observable;
-import java.util.Observer;
 import java.util.Random;
 
 import butterknife.BindView;
@@ -89,13 +84,14 @@ public class GameActivity extends Activity {
         MobileAds.initialize(this, "ca-app-pub-8431172432849630~7417322490");
         mAdView = findViewById(R.id.adViewStartScreen);
         AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.setVisibility(View.VISIBLE);
-        mAdView.loadAd(adRequest);
+        //mAdView.setVisibility(View.VISIBLE);
+        //mAdView.loadAd(adRequest);
     }
 
 
     private void initialiseGame(Game game) {
         flowMode = game.getFlowMode();
+        if(flowMode.equals(Game.FlowMode.Random))flowMode = new Random().nextBoolean() ? Game.FlowMode.Linear : Game.FlowMode.Radial;
         gameMode = game.getGameMode();
         index = game.getIndex();
         if(game.getDifficulty()!=null){
@@ -158,6 +154,7 @@ public class GameActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+        FullscreenHelper.setFullscreen(this);
     }
 
     @Override
@@ -253,9 +250,10 @@ public class GameActivity extends Activity {
                                                             new Highscore(PointsHandler.getInstance().getScore(),
                                                             ((Game)getIntent().getParcelableExtra("game")).getIndex(),
                                                             0),
-                                                            PointsHandler.getInstance().isHIghscore(this));
+                                                            PointsHandler.getInstance().isHighscore(this));
             data.putExtra("gamefinished",gameFinished);
             setResult(RESULT_OK, data);
+            new GameFinishedHelper(gameFinished);
             finish();
             LevelHandler.getInstance().reset();
             PointsHandler.getInstance().reset();

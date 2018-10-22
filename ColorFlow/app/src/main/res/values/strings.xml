@@ -5,4 +5,20 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="not_enough_points_to_restart">Not enough points!</string>
+    <string name="pkey">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAh0B+oUmOczGJFz1ZHnQx1ovTEoDLRVAIJGC1jaoucy6WTI+1w/4OiAbvevg33VKf6/TDgD2BWfKxV465xD8n2DKYxx0gKw3uN4c2Wkw6S4eiTsGFEw857OgkOHvpfdj0Kf9isu4HvMhfx8Qwt7g5UR/jVyX6LUmm+ei+LvwKnh0/VaAV3nsCxQR2C/O+LTkMskrLQc7uOsLXouiPln3X0qRaeCnYwH7ol5Zs4LciWMvn6O1viBMF98sEJXbgmFWVYeimELNQdDq/gvpaI0lww/xM/2MJPVbEd0e7wTKr5ciPYLkXBLpX7vh5EddehOVDrS47lB2ZWtqAmbZDR2pqgQIDAQAB</string>
+    <string name="gradients">GRADIENTS</string>
+    <string name="premium">Premium</string>
+    <string name="start">Start</string>
+    <string name="colors">Colors</string>
+    <string name="get_premium">Get Premium</string>
+    <string name="_4200">4200</string>
+    <string name="choose_a_flow_mode">Choose a flow mode</string>
+    <string name="linear">Linear</string>
+    <string name="radial">Radial</string>
+    <string name="random">Random</string>
+    <string name="level_resource">Level %d</string>
+    <string name="game_started">game_started</string>
+    <string name="game_started_id">game_started_id</string>
+    <string name="play_again"><u>PLAY AGAIN</u></string>
+    <string name="level_mode">LEVEL %d   |   %s</string>
 </resources>

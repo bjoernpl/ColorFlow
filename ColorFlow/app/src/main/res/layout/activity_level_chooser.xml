@@ -4,9 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bnpgames.android.Gradients.Levels.LevelChooser">
+    tools:context="com.bnpgames.android.colorflow.Levels.LevelChooser">
 
-    <com.bnpgames.android.Gradients.GameModes.BackgroundView
+    <com.bnpgames.android.colorflow.GameModes.BackgroundView
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
-    tools:context="com.bnpgames.android.Gradients.Activities.Ingame.GameActivity">
+    tools:context="com.bnpgames.android.colorflow.Activities.Ingame.GameActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,9 +44,7 @@
                 android:drawableLeft="@drawable/ic_color_lens_white_24dp"
                 android:padding="5dp"
                 android:text="4200"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:visibility="gone" />
+                style="@style/TextBase.LargeText"/>
 
             <TextView
                 android:id="@+id/retryButton"
@@ -54,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="168dp"
+                android:layout_marginBottom="200dp"
                 android:background="@drawable/square_background"
                 android:drawableRight="@drawable/ic_color_lens_white_24dp"
                 android:elevation="1dp"
@@ -67,10 +65,33 @@
                 android:textStyle="bold"
                 android:visibility="gone" />
 
-            <com.bnpgames.android.Gradients.GameModes.ColorFlow
-                android:id="@+id/colorflow"
+            <TextView
+                android:id="@+id/retryButtonExplanation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="130dp"
+                android:elevation="1dp"
+                android:padding="10dp"
+                android:text="Pay %d points to try again"
+                android:textAlignment="center"
+                android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:visibility="gone" />
+
+            <com.bnpgames.android.colorflow.GameModes.ColorFlow
+                android:id="@+id/colorFlow"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent" />
+                android:layout_height="fill_parent"
+                android:visibility="gone"/>
+
+            <com.bnpgames.android.colorflow.GameModes.ColorFlowRadial
+                android:id="@+id/colorFlowRadial"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:visibility="gone"/>
 
             <View
                 android:id="@+id/fail_border"
@@ -99,7 +120,7 @@
                     android:textAlignment="center"
                     android:textAppearance="@android:style/TextAppearance.Material.Title"
                     android:textColor="@android:color/white"
-                    android:textSize="140sp"
+                    android:textSize="140dp"
                     android:textStyle="bold"
                     android:typeface="normal" />
 
@@ -111,11 +132,13 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="87dp"
                     android:text="nice!"
+                    android:padding="5dp"
                     android:textAlignment="center"
                     android:textAllCaps="true"
                     android:textColor="#FFFFFF"
+                    android:layout_gravity="fill"
                     android:textSize="46sp"
-                    android:textStyle="bold|italic" />
+                    android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/totalScoreTextView"
@@ -138,8 +161,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:elevation="4dp"
-                android:visibility="gone"
-                ads:adSize="SMART_BANNER"
+                ads:adSize="BANNER"
                 ads:adUnitId="ca-app-pub-8431172432849630/7274347106"/>
 
         </RelativeLayout>

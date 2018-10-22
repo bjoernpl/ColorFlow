@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blue_gradient"
+    android:orientation="vertical"
+    android:id="@+id/failed_fragment_background">
+
+    <TextView
+        style="@style/TextBase.LargeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:letterSpacing="0.1"
+        android:padding="8dp"
+        android:layout_marginTop="30dp"
+        android:text="GOAL COLOR"
+        android:textAlignment="center" />
+
+    <TextView
+        style="@style/TextBase.LargeText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:letterSpacing="0.1"
+        android:padding="8dp"
+        android:layout_marginBottom="40dp"
+        android:text="TAPPED COLOR"
+        android:textAlignment="center" />
+
+    <TextView
+        android:id="@+id/totalScoreText"
+        style="@style/TextBase.LargeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:drawableLeft="@drawable/ic_color_lens_white_24dp"
+        android:paddingRight="8dp"
+        android:paddingTop="8dp"
+        android:text="20393"
+        android:textAlignment="viewEnd" />
+
+    <TextView
+        android:id="@+id/totalScoreAddition"
+        style="@style/TextBase.LargeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="end"
+        android:paddingRight="8dp"
+        android:text="+2040"
+        android:gravity="top|end" />
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="100dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"/>
+
+        <TextView
+            android:id="@+id/highScoreText"
+            style="@style/TextBase.LargeText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:visibility="invisible"
+            android:letterSpacing="0.3"
+            android:padding="8dp"
+            android:text="HIGHSCORE!"
+            android:textAlignment="center" />
+
+
+        <TextView
+            android:id="@+id/failed_score"
+            style="@style/TextBase.VeryLargeText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:includeFontPadding="false"
+            android:text="2040"
+            android:textAlignment="center"
+            android:textSize="90dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/failed_level_mode"
+            style="@style/TextBase.LargeText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5"
+            android:gravity="top"
+            android:letterSpacing="0.25"
+            android:padding="8dp"
+            android:text="LEVEL 23    |    LINEAR"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/failed_play_again"
+            style="@style/TextBase.LargeText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:minHeight="100dp"
+            android:letterSpacing="0.3"
+            android:padding="8dp"
+            android:text="@string/play_again"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/failed_back_to_menu"
+            style="@style/TextBase.MediumText"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:letterSpacing="0.1"
+            android:padding="8dp"
+            android:text="BACK TO MENU"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/failed_share_score"
+            style="@style/TextBase.MediumText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="40dp"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/square_background"
+            android:includeFontPadding="false"
+            android:letterSpacing="0.3"
+            android:padding="4dp"
+            android:text="SHARE"
+            android:textAlignment="center" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

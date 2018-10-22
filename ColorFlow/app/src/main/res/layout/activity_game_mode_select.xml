@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:id="@+id/gameChooserBackground">
 
-    <com.bnpgames.android.Gradients.GameModes.ColorFlowRadial
+    <com.bnpgames.android.colorflow.GameModes.ColorFlowRadial
         android:id="@+id/colorFlowRadial"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
-    <com.bnpgames.android.Gradients.GameModes.ColorFlow
+    <com.bnpgames.android.colorflow.GameModes.ColorFlow
         android:id="@+id/colorFlow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -25,7 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="158dp"
-        android:text="Choose a flow mode"
+        android:text="@string/choose_a_flow_mode"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:buttonTint="@android:color/holo_purple"
-            android:text="Linear"
+            android:text="@string/linear"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_purple"
@@ -59,7 +59,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:buttonTint="@android:color/holo_orange_dark"
-            android:text="Radial"
+            android:text="@string/radial"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_orange_dark"
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:buttonTint="@android:color/holo_green_light"
-            android:text="Random"
+            android:text="@string/random"
             android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="@android:color/holo_green_light"

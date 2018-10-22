@@ -13,8 +13,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:text="Casual\nMode"
+        android:layout_marginTop="24dp"
+        android:text="Casual Mode"
         android:textAlignment="center"
         android:textAllCaps="false"
         android:textColor="@android:color/white"
@@ -31,9 +31,8 @@
         android:elevation="2dp"
         android:text="@string/press_color_to_pass"
         android:textAlignment="center"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-        android:textColor="#FFFFFF"
-        android:textSize="24sp" />
+        style="@style/TextBase.LargeText"
+        />
 
     <TextView
         android:id="@+id/requiredAccuracy"
@@ -44,9 +43,7 @@
         android:layout_marginBottom="61dp"
         android:text="Score 80 points or more to pass!\n\nTap anywhere to continue"
         android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        style="@style/TextBase.LargeText" />
 
     <ProgressBar
         android:id="@+id/progressbar"

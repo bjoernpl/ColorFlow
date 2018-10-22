@@ -8,8 +8,32 @@
         <item name="android:windowTranslucentNavigation">true</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@android:color/white</item>
         <item name="android:fontFamily">@font/mallanna</item>
     </style>
+
+
+    <!--  Text Styles -->
+    <style name="TextBase" parent="TextAppearance.AppCompat">
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:fontFamily">@font/mallanna</item>
+    </style>
+    
+    <style name="TextBase.MediumText">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="TextBase.SmallText">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextBase.LargeText">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="TextBase.VeryLargeText">
+        <item name="android:textSize">40sp</item>
+    </style>
+
 
 </resources>

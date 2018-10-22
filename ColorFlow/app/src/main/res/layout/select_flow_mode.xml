@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     android:id="@+id/gameChooserBackground">
 
-    <com.bnpgames.android.Gradients.GameModes.ColorFlowRadial
+    <com.bnpgames.android.colorflow.GameModes.ColorFlowRadial
         android:id="@+id/colorFlowRadial"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:visibility="gone"/>
 
-    <com.bnpgames.android.Gradients.GameModes.ColorFlow
+    <com.bnpgames.android.colorflow.GameModes.ColorFlow
         android:id="@+id/colorFlow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,10 +24,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="158dp"
+        android:layout_marginTop="140dp"
         android:text="Choose a gradient"
         android:textAlignment="center"
-        android:textAllCaps="false"
+        android:textAllCaps="true"
         android:textColor="@android:color/white"
         android:textSize="38sp"
         android:textStyle="bold" />
@@ -50,9 +50,8 @@
             android:text="Linear"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            style="@style/TextBase.LargeText"
+            />
 
         <RadioButton
             android:id="@+id/radioButton2"
@@ -63,9 +62,8 @@
             android:text="Radial"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            style="@style/TextBase.LargeText"
+            />
 
         <RadioButton
             android:id="@+id/radioButton3"
@@ -76,9 +74,8 @@
             android:text="Random"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/white"
-            android:textSize="24sp"
-            android:textStyle="bold" />
+            style="@style/TextBase.LargeText"
+            />
 
     </RadioGroup>
 
@@ -92,9 +89,8 @@
         android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
         android:text="Back"
         android:padding="5dp"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        style="@style/TextBase.LargeText"
+        />
 
     <TextView
         android:id="@+id/totalScoreText"
@@ -115,12 +111,12 @@
         android:id="@+id/nextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:text="Start Game!"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
+        android:padding="5dp"
+        style="@style/TextBase.LargeText"
         android:textStyle="bold" />
 </RelativeLayout>

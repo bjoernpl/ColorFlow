@@ -3,7 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="com.bnpgames.android.Gradients.Fragments.FailedFragment">
+    tools:context="com.bnpgames.android.colorflow.Fragments.FailedFragment">
+
+    <View
+        android:id="@+id/transitionView"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:elevation="3dp"
+        android:layout_centerInParent="true"/>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -16,13 +24,12 @@
             android:id="@+id/backTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
-            android:layout_marginBottom="24dp"
+            android:layout_alignParentTop="true"
             android:layout_marginTop="15dp"
             android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
             android:paddingLeft="10dp"
-            android:text=" Return to menu"
+            android:text="Back"
             android:textColor="@android:color/white"
             android:textSize="22sp"
             android:textStyle="bold" />
@@ -31,11 +38,10 @@
             android:id="@+id/nextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="24dp"
-            android:layout_marginRight="10dp"
+            android:layout_alignTop="@+id/backTextView"
             android:text="Play again!"
+            android:layout_marginRight="10dp"
             android:textAlignment="viewEnd"
             android:textColor="@android:color/white"
             android:textSize="22sp"
@@ -60,27 +66,26 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:elevation="1dp"
                 android:fontFamily="sans-serif"
                 android:text="Score: 1664"
-                android:elevation="1dp"
                 android:textAlignment="center"
                 android:textAllCaps="true"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/highScoreText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/levelText"
+                android:layout_above="@+id/levelText"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
+                android:elevation="1dp"
                 android:text="NEW HIGHSCORE!"
                 android:textAlignment="center"
-                android:elevation="1dp"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 android:typeface="normal" />
 
@@ -88,82 +93,28 @@
                 android:id="@+id/levelText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_above="@id/totalScoreText"
+                android:layout_above="@+id/totalScoreText"
                 android:layout_centerHorizontal="true"
-                android:layout_marginBottom="30dp"
-                android:text="Level 18"
                 android:elevation="1dp"
+                android:text="Level 18"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="24sp"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/shareText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginTop="24dp"
-                android:layout_marginRight="24dp"
-                android:text="SHARE"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@id/totalScoreText"
+                android:layout_marginTop="20dp"
                 android:elevation="1dp"
+                android:text="SHARE"
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:typeface="normal" />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/totalScoreText"
-                android:layout_marginTop="30dp"
-                android:layout_centerHorizontal="true"
-                android:elevation="1dp">
-
-                <TextView
-                    android:id="@+id/totalpoints_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Total points:"
-                    android:textAlignment="textStart"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-
-                <TextView
-                    android:id="@+id/totalpoints_numbers"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/totalpoints_text"
-                    android:text="22034"
-                    android:elevation="1dp"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-
-                <TextView
-                    android:id="@+id/totalpoints_text_added"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/totalpoints_text"
-                    android:layout_toRightOf="@id/totalpoints_text"
-                    android:text="+1023"
-                    android:elevation="1dp"
-                    android:textAlignment="textEnd"
-                    android:textColor="@android:color/white"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    android:typeface="normal" />
-
-
-            </RelativeLayout>
-
-
-
+                android:textSize="24sp"
+                android:textStyle="bold"/>
 
 
             <TextView
@@ -190,6 +141,55 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:elevation="1dp">
+
+                <TextView
+                    android:id="@+id/totalpoints_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingRight="8dp"
+                    android:text="Total points:"
+                    android:textAlignment="center"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <TextView
+                    android:id="@+id/totalpoints_numbers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/totalpoints_text"
+                    android:elevation="1dp"
+                    android:text="22034"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+                <TextView
+                    android:id="@+id/totalpoints_text_added"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/totalpoints_text"
+                    android:layout_toRightOf="@id/totalpoints_text"
+                    android:elevation="1dp"
+                    android:text="+1023"
+                    android:textAlignment="viewEnd"
+                    android:textColor="@android:color/white"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:typeface="normal" />
+
+
+            </RelativeLayout>
 
             <TextView
                 android:id="@+id/you_pressed_text"

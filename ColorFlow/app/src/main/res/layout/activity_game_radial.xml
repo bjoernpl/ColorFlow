@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/darker_gray"
-    tools:context="com.bnpgames.android.Gradients.Activities.Ingame.GameActivity">
+    tools:context="com.bnpgames.android.colorflow.Activities.Ingame.GameActivity">
 
     <View
         android:layout_width="match_parent"
@@ -45,7 +45,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="168dp"
+        android:layout_marginBottom="200dp"
         android:background="@drawable/square_background"
         android:drawableRight="@drawable/ic_color_lens_white_24dp"
         android:elevation="1dp"
@@ -58,7 +58,24 @@
         android:textStyle="bold"
         android:visibility="gone" />
 
-    <com.bnpgames.android.Gradients.GameModes.ColorFlowRadial
+    <TextView
+        android:id="@+id/retryButtonExplanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="130dp"
+        android:elevation="1dp"
+        android:padding="10dp"
+        android:text="Pay %d points to try again"
+        android:textAlignment="center"
+        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:visibility="gone" />
+
+    <com.bnpgames.android.colorflow.GameModes.ColorFlowRadial
         android:id="@+id/colorflow"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent" />
@@ -119,6 +136,18 @@
             android:textColor="@android:color/white"
             android:textSize="30sp"
             android:textStyle="bold" />
+
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/adViewGameScreen"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:elevation="4dp"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="ca-app-pub-8431172432849630/7274347106"/>
+
     </RelativeLayout>
 
 </RelativeLayout>

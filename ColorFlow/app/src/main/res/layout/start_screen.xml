@@ -6,18 +6,35 @@
 
         <TextView
             android:id="@+id/title_text"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="115dp"
             android:elevation="10dp"
-            android:text="GRADIENTS"
+            android:letterSpacing="0.17"
+            android:text="@string/gradients"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Display2"
             android:textColor="#FFFFFF"
-            android:textSize="60sp"
-            android:letterSpacing="0.2"
+            android:textSize="50dp"
+            android:textStyle="bold"
+            android:typeface="normal" />
+
+        <TextView
+            android:id="@+id/title_text_premium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@id/title_text"
+            android:layout_alignBottom="@id/title_text"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="50dp"
+            android:visibility="gone"
+            android:elevation="10dp"
+            android:text="@string/premium"
+            android:textAlignment="center"
+            android:textColor="#FFFFFF"
+            style="@style/TextBase.SmallText"
             android:textStyle="bold"
             android:typeface="normal" />
 
@@ -29,16 +46,15 @@
             android:layout_centerInParent="true"
             android:background="@drawable/square_background"
             android:elevation="10dp"
-            android:paddingBottom="4dp"
+            android:paddingBottom="8dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:paddingTop="4dp"
-            android:text="Start"
+            android:paddingTop="8dp"
+            android:letterSpacing="0.2"
+            android:text="@string/start"
             android:textAlignment="center"
             android:textAllCaps="true"
-            android:textColor="#FFFFFF"
-            android:textSize="50sp"
-            android:textStyle="bold" />
+            style="@style/TextBase.VeryLargeText"/>
 
         <TextView
             android:id="@+id/highscore_text"
@@ -47,10 +63,10 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="60dp"
-            android:textSize="20sp"
+            style="@style/TextBase.MediumText"
             android:elevation="10dp"
+            android:letterSpacing="0.1"
             android:text="@string/highscore_text"
-            android:textColor="#FFFFFF"
             android:textAlignment="center"
             />
 
@@ -62,7 +78,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="70dp"
             android:padding="5dp"
-            android:text="Colors"
+            android:text="@string/colors"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
@@ -78,24 +94,24 @@
             android:layout_marginBottom="170dp"
 
             android:padding="5dp"
-            android:text="Get Premium"
+            android:text="@string/get_premium"
+            android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
-            android:textSize="30sp"
-            android:textStyle="bold" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/totalScoreText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/title_text"
             android:layout_alignParentEnd="true"
-            android:layout_marginBottom="-52dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="15dp"
             android:drawableLeft="@drawable/ic_color_lens_white_24dp"
             android:padding="4dp"
-            android:text="4200"
+            android:text="@string/_4200"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="24sp"
             android:textStyle="bold" />
 
         <ImageButton

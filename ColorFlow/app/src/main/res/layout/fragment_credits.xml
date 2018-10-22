@@ -17,9 +17,7 @@
         android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
         android:text="Back"
         android:padding="5dp"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        style="@style/TextBase.LargeText" />
 
     <TextView
         android:id="@+id/title_text2"
@@ -48,13 +46,13 @@
         android:layout_marginTop="246dp"
         android:paddingLeft="8dp"
         android:paddingRight="8dp"
-        android:text="Thank you very much to following creators for allowing the use of their creations\n\n\nMusic:\n\n~aether theories~ by Vidian (c)\ncopyright 2018 Licensed under a Creative Commons Attribution (3.0) license.\nhttp://dig.ccmixter.org/files/Vidian/57398 Ft: Gurdonark, White-throated Sparrow\n\n\nButterknife library\nCopyright 2013 Jake Wharton\n\n
+        android:text="Thank you very much to following creators for allowing the use of their creations\n\n\nMusic:\n\n~aether theories~ by Vidian (c)\ncopyright 2018 Licensed under a Creative Commons Attribution (3.0) license.\nhttp://dig.ccmixter.org/files/Vidian/57398 Ft: Gurdonark, White-throated Sparrow\n\n\nButterKnife library:\nCopyright 2013 Jake Wharton\n\n
 
 Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);\n
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at\n\n
 
-   http://www.apache.org/licenses/LICENSE-2.0"
+   http://www.apache.org/licenses/LICENSE-2.0\n\nUnless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:textSize="13sp" />

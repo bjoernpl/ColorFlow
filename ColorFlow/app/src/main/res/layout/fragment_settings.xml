@@ -35,8 +35,7 @@
         android:text="Back"
         android:padding="5dp"
         android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        android:textSize="24sp" />
 
     <Switch
         android:id="@+id/music_switch"
@@ -46,12 +45,9 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="369dp"
         android:checked="true"
-        android:fontFamily="sans-serif"
         android:switchPadding="30dp"
         android:text="PLAY MUSIC"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        style="@style/TextBase.LargeText"
         android:trackTint="@android:color/white"
         android:thumbTint="@android:color/white" />
 
@@ -64,9 +60,7 @@
         android:layout_marginTop="60dp"
         android:text="Credits"
         android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        style="@style/TextBase.LargeText" />
 
     <TextView
         android:id="@+id/disable_ads_button"
@@ -77,7 +71,6 @@
         android:layout_marginTop="60dp"
         android:text="Disable ads"
         android:textAllCaps="true"
-        android:textColor="@android:color/white"
-        android:textSize="24sp"
-        android:textStyle="bold" />
+        style="@style/TextBase.LargeText"
+        />
 </RelativeLayout>

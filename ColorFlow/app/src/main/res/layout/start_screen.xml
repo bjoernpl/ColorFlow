@@ -74,25 +74,24 @@
             android:id="@+id/profileText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/startplaying_text"
+            android:layout_above="@+id/settingsText"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="70dp"
             android:padding="5dp"
             android:text="@string/colors"
+            android:textAlignment="center"
             android:textAllCaps="true"
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <TextView
             android:id="@+id/settingsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="170dp"
+            android:layout_above="@+id/highscore_text"
 
+            android:layout_centerHorizontal="true"
             android:padding="5dp"
             android:text="@string/get_premium"
             android:textAlignment="center"

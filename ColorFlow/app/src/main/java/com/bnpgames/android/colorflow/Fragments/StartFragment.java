@@ -83,6 +83,7 @@ public class StartFragment extends Fragment {
                 onButtonPressed(StartButton.Start);
                 break;
             case R.id.profileText:
+                onButtonPressed(StartButton.Settings);
                 return;
             case R.id.settingsText:
                 onButtonPressed(StartButton.Profile);

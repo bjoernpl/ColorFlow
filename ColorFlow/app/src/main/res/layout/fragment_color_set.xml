@@ -1,22 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".Fragments.ColorSetFragment">
 
     <TextView
         android:id="@+id/backTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginTop="15dp"
         android:drawableLeft="@drawable/ic_arrow_back_black_24dp"
         android:text="Back"
         android:padding="5dp"
         style="@style/TextBase.LargeText" />
 
+    <TextView
+        android:id="@+id/title_text_colors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:text="COLORS"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        style="@style/TextBase.VeryLargeText"
+         />
+
+    <TextView
+        android:id="@+id/colors_explanation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="2dp"
+        android:text="Color sets can be unlocked to give Gradients a beautiful and unique change in design"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        style="@style/TextBase.MediumText"
+        />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/colorsRV"
+        android:background="#55FFFFFF"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
-</RelativeLayout>
+
+</LinearLayout>

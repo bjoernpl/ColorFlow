@@ -6,7 +6,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.bnpgames.android.colorflow.GameModes.Game;
-import com.bnpgames.android.colorflow.Resources.ColorHandler;
+import com.bnpgames.android.colorflow.Colors.ColorHandler;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -37,6 +37,8 @@ public class LevelHandler extends Observable{
         if(colors==null) {
             colors = ColorHandler.getColors(context);
             initiateLevels();
+        }else{
+            colors = ColorHandler.getColors(context);
         }
     }
 
@@ -78,10 +80,10 @@ public class LevelHandler extends Observable{
 
     private void initiateLevels(){
         levels = new ArrayList<>();
-        Level level1 = new Level(1,85,new int[]{Color.MAGENTA,Color.CYAN,Color.YELLOW},Color.MAGENTA,1,0,false);
+        //Level level1 = new Level(1,85,new int[]{Color.MAGENTA,Color.CYAN,Color.YELLOW},Color.MAGENTA,1,0,false);
 
-        levels.add(level1);
-        for(int i = 1; i<5;i++){
+        //levels.add(level1);
+        for(int i = 0; i<5;i++){
             try {
                 levels.add(new RandomLevelTask().execute(i).get());
             } catch (InterruptedException | ExecutionException e) {

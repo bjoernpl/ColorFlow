@@ -8,4 +8,56 @@
     <color name="yellow">#ffe100</color>
     <color name="dark_green">#537213</color>
     <color name="burgunder">#660000</color>
+
+    <color name="circus1">#91a6ff</color>
+    <color name="circus2">#ff88dc</color>
+    <color name="circus3">#faff7f</color>
+    <color name="circus4">#bacbba</color>
+    <color name="circus5">#ff5154</color>
+
+    <color name="fall1">#4e3832</color>
+    <color name="fall2">#684a52</color>
+    <color name="fall3">#857885</color>
+    <color name="fall4">#87a0b2</color>
+    <color name="fall5">#a4bef3</color>
+
+    <color name="winter1">#040404</color>
+    <color name="winter2">#081529</color>
+    <color name="winter3">#032525</color>
+    <color name="winter4">#0d7378</color>
+    <color name="winter5">#64a6b3</color>
+    <color name="winter6">#9d9e96</color>
+
+    <color name="summer1">#ef6e64</color>
+    <color name="summer2">#ffad9b</color>
+    <color name="summer3">#ffd97d</color>
+    <color name="summer4">#b1f68e</color>
+    <color name="summer5">#60d394</color>
+    <color name="summer6">#0fa3b1</color>
+
+    <color name="france1">#0b3954</color>
+    <color name="france2">#087e8b</color>
+    <color name="france3">#aec4d5</color>
+    <color name="france4">#ff5a5f</color>
+    <color name="france5">#c81d25</color>
+
+    <color name="spring1">#006d4e</color>
+    <color name="spring2">#45ba35</color>
+    <color name="spring3">#00e275</color>
+    <color name="spring4">#12e8c8</color>
+    <color name="spring5">#1178a0</color>
+    <color name="spring6">#007bff</color>
+
+    <color name="autumn1">#2d000e</color>
+    <color name="autumn2">#2a1a1f</color>
+    <color name="autumn3">#764134</color>
+    <color name="autumn4">#ad8350</color>
+    <color name="autumn5">#444444</color>
+    <color name="autumn6">#343f23</color>
+
+
+
+
+
+
 </resources>

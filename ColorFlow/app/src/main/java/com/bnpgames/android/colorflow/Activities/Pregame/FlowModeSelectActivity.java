@@ -16,7 +16,7 @@ import com.bnpgames.android.colorflow.GameModes.ColorFlow;
 import com.bnpgames.android.colorflow.GameModes.ColorFlowRadial;
 import com.bnpgames.android.colorflow.GameModes.Game;
 import com.bnpgames.android.colorflow.Levels.LevelRandomizer;
-import com.bnpgames.android.colorflow.Resources.ColorHandler;
+import com.bnpgames.android.colorflow.Colors.ColorHandler;
 import com.bnpgames.android.colorflow.Statistics.Highscore;
 import com.bnpgames.android.colorflow.Statistics.PointsHandler;
 import com.bnpgames.android.colorflow.R;

@@ -76,7 +76,7 @@ public class LevelRandomizer {
     }
 
     private static int[] getRandomColors(int[] colors){
-        int size = new Random().nextInt(colors.length-5)+3;
+        int size = new Random().nextInt(colors.length-4)+4;
         int[] ints = new int[size];
         for(int i = 0; i<size;i++){
             ints[i] = getRandomColor(ints);

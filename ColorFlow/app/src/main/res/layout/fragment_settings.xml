@@ -14,8 +14,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="115dp"
         android:elevation="10dp"
-
-        android:fontFamily="sans-serif"
         android:text="SETTINGS"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"

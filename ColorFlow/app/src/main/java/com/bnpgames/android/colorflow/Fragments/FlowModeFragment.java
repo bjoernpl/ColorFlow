@@ -1,21 +1,19 @@
 package com.bnpgames.android.colorflow.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.bnpgames.android.colorflow.GameModes.ColorFlow;
 import com.bnpgames.android.colorflow.GameModes.ColorFlowRadial;
 import com.bnpgames.android.colorflow.GameModes.Game;
 import com.bnpgames.android.colorflow.Levels.LevelRandomizer;
 import com.bnpgames.android.colorflow.R;
-import com.bnpgames.android.colorflow.Resources.ColorHandler;
+import com.bnpgames.android.colorflow.Colors.ColorHandler;
 
 import java.util.Random;
 

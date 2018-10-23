@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="116dp"
+    >
+
+    <View
+        android:id="@+id/color_set_background"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"/>
+
+    <RadioButton
+        android:id="@+id/color_set_radiobutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:backgroundTint="@android:color/white"
+        android:buttonTint="@android:color/white"
+        android:foregroundTint="@android:color/white" />
+
+    <TextView
+        android:id="@+id/color_set_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/color_set_radiobutton"
+        android:layout_marginLeft="8dp"
+        style="@style/TextBase.LargeText"
+        android:textAllCaps="true"
+        android:letterSpacing="0.3"
+        android:text="pastel"/>
+
+    <TextView
+        android:id="@+id/color_set_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/colors_lock_image"
+        android:padding="8dp"
+        android:layout_centerVertical="true"
+        style="@style/TextBase.LargeText"
+        android:text="15.000"/>
+
+    <ImageView
+        android:id="@+id/colors_lock_image"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_lock_outline_black_24dp"/>
+
+
+
+</RelativeLayout>

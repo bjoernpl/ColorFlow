@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.View;
@@ -28,6 +29,7 @@ import com.bnpgames.android.colorflow.Helpers.ActivityLifecycleHelper;
 import com.bnpgames.android.colorflow.Helpers.FullscreenHelper;
 import com.bnpgames.android.colorflow.Helpers.GameFinishedHelper;
 import com.bnpgames.android.colorflow.Helpers.GameHelper;
+import com.bnpgames.android.colorflow.Helpers.InterfaceHelper;
 import com.bnpgames.android.colorflow.Helpers.MusicHelper;
 import com.bnpgames.android.colorflow.Helpers.PurchaseHelper;
 import com.bnpgames.android.colorflow.Levels.LevelRandomizer;
@@ -49,7 +51,8 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
         StartFragment.OnButtonPressedListener,
         SpeedModeFragment.OnSpeedModeSelectedListener ,
         FailedFragment.OnFragmentInteractionListener,
-        SettingsFragment.OnSettingsInteractionListener
+        SettingsFragment.OnSettingsInteractionListener,
+        InterfaceHelper.ColorSelectedListener
 {
 
     @Nullable @BindView(R.id.highscore_text) TextView highscoretext;
@@ -89,6 +92,18 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
 
         getSupportFragmentManager().beginTransaction().replace(R.id.start_frame,new StartFragment()).commit();
 
+        colorFlow.setLevel(LevelRandomizer.getStartLevel(ColorHandler.getColors(this)));
+        colorFlow.start();
+    }
+
+    @Override
+    public void onColorSetSelected(ColorHandler.ColorSet colorSet) {
+        colorFlow.setLevel(LevelRandomizer.getStartLevel(ColorHandler.getColors(this)));
+        colorFlow.start();
+    }
+
+    @Override
+    public void onColorUnselected(ColorHandler.ColorSet colorSet) {
         colorFlow.setLevel(LevelRandomizer.getStartLevel(ColorHandler.getColors(this)));
         colorFlow.start();
     }
@@ -170,18 +185,22 @@ public class StartActivity extends FragmentActivity implements FlowModeFragment.
 
     @Override
     public void onButtonPressed(StartFragment.StartButton button) {
+        Fragment fragment = null;
         switch(button){
             case Start:
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out).replace(R.id.start_frame,new FlowModeFragment()).addToBackStack(null).commit();
-                break;
-            case Profile:
-                //Toast.makeText(StartActivity.this,"Premium version will be enabled soon!",Toast.LENGTH_LONG).show();
-                showPurchaseDialog();
+                fragment = new FlowModeFragment();
                 break;
             case Settings:
-                getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out).replace(R.id.start_frame,new ColorSetFragment()).addToBackStack(null).commit();
+                fragment = new SettingsFragment();
                 break;
+            case Colors:
+                fragment = new ColorSetFragment();
+                break;
+            case Premium:
+                showPurchaseDialog();
+                return;
         }
+        getSupportFragmentManager().beginTransaction().setCustomAnimations(android.R.anim.fade_in,android.R.anim.fade_out).replace(R.id.start_frame,fragment).addToBackStack(null).commit();
     }
 
     private void showPurchaseDialog(){

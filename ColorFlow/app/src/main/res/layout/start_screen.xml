@@ -71,10 +71,10 @@
             />
 
         <TextView
-            android:id="@+id/profileText"
+            android:id="@+id/colorsText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/settingsText"
+            android:layout_above="@+id/premiumText"
             android:layout_centerHorizontal="true"
             android:padding="5dp"
             android:text="@string/colors"
@@ -83,10 +83,10 @@
             android:textColor="#FFFFFF"
             android:textSize="30sp"
             android:textStyle="bold"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <TextView
-            android:id="@+id/settingsText"
+            android:id="@+id/premiumText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_above="@+id/highscore_text"

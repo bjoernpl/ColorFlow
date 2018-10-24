@@ -2,14 +2,12 @@ package com.bnpgames.android.colorflow.Colors;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.bnpgames.android.colorflow.R;
@@ -19,7 +17,8 @@ import butterknife.ButterKnife;
 
 public class ColorViewHolder extends RecyclerView.ViewHolder {
 
-    @BindView(R.id.color_set_radiobutton) RadioButton radioButton;
+    @BindView(R.id.color_set_checkbox)
+    CheckBox checkBox;
     @BindView(R.id.color_set_name) TextView colorSetTitle;
     @BindView(R.id.color_set_price) TextView priceView;
     @BindView(R.id.colors_lock_image) ImageView lockView;
@@ -30,22 +29,15 @@ public class ColorViewHolder extends RecyclerView.ViewHolder {
     ColorViewHolder(@NonNull View itemView) {
         super(itemView);
         ButterKnife.bind(this,itemView);
-        itemView.setOnClickListener(view -> {
-            radioButton.toggle();
-
-        });
     }
 
-    public boolean getRadioButtonChecked() {
-        return radioButton.isChecked();
-    }
-
-    public void setRadioButtonChecked(boolean checked) {
-        radioButton.setChecked(checked);
-    }
 
     public void setColorSetTitle(String colorSetTitle) {
         this.colorSetTitle.setText(colorSetTitle);
+    }
+
+    public void toggleCheckBox(){
+        checkBox.toggle();
     }
 
     @SuppressLint("DefaultLocale")

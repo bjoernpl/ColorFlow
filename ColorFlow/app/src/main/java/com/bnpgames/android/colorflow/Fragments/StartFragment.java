@@ -1,22 +1,18 @@
 package com.bnpgames.android.colorflow.Fragments;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.ViewUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.bnpgames.android.colorflow.GameModes.Game;
 import com.bnpgames.android.colorflow.Helpers.PurchaseHelper;
 import com.bnpgames.android.colorflow.R;
 import com.bnpgames.android.colorflow.Statistics.Highscore;
 import com.bnpgames.android.colorflow.Statistics.PointsHandler;
 
-import java.util.Observable;
 import java.util.Observer;
 
 import butterknife.BindView;
@@ -33,14 +29,17 @@ public class StartFragment extends Fragment {
     TextView totalScoreText;
     @BindView(R.id.title_text_premium)
     TextView premiumText;
-    @BindView(R.id.settingsText)
+    @BindView(R.id.premiumText)
     TextView getPremiumText;
+    @BindView(R.id.colorsText) TextView colorsText;
     private Observer highScoreObserver;
+    private int highScoreClickCounter = 0;
 
     public enum StartButton{
         Start,
-        Profile,
-        Settings
+        Colors,
+        Settings,
+        Premium
     }
 
     public StartFragment() {
@@ -76,19 +75,26 @@ public class StartFragment extends Fragment {
         if(isAdded()) highscoretext.setText(String.format(getString(R.string.highscore_text),score.getLevel(),score.getScore()));
     }
 
-    @OnClick({R.id.startplaying_text,R.id.profileText,R.id.settingsText,R.id.imageButton})
+    @OnClick(R.id.highscore_text)
+    void onHighScoreClicked(){
+        if(highScoreClickCounter++>=5){
+            colorsText.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @OnClick({R.id.startplaying_text,R.id.colorsText,R.id.premiumText,R.id.imageButton})
     public void modeClicked(View view){
         switch (view.getId()){
             case R.id.startplaying_text:
                 onButtonPressed(StartButton.Start);
                 break;
-            case R.id.profileText:
-                onButtonPressed(StartButton.Settings);
+            case R.id.colorsText:
+                onButtonPressed(StartButton.Colors);
                 return;
-            case R.id.settingsText:
-                onButtonPressed(StartButton.Profile);
+            case R.id.premiumText:
+                onButtonPressed(StartButton.Premium);
                 break;
-            default:
+            case R.id.imageButton:
                 onButtonPressed(StartButton.Settings);
                 break;
         }

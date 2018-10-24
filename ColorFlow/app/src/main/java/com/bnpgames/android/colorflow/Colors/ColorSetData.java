@@ -34,6 +34,10 @@ public class ColorSetData {
         this.name = name;
     }
 
+    public ColorHandler.ColorSet getColorSet(){
+        return name;
+    }
+
     public int getCost() {
         return cost;
     }
